@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" width="600" height="120">
+  <!-- Ícone do plug com raio -->
+  <g transform="translate(10,20)">
+    <!-- Corpo do plug -->
+    <rect x="0" y="10" width="60" height="70" rx="12" ry="12" fill="#2ECC71"></rect>
+    <!-- Pinos -->
+    <rect x="10" y="0" width="8" height="15" rx="3" fill="#2ECC71"></rect>
+    <rect x="42" y="0" width="8" height="15" rx="3" fill="#2ECC71"></rect>
+    <!-- Raio -->
+    <path d="M25 30 L40 30 L32 50 L46 50 L20 80 L30 55 L18 55 Z" fill="white" transform="scale(0.9) translate(3,0)"></path>
+  </g>
+
+  <!-- Texto PowerSpot -->
+  <text x="90" y="70" font-family="Poppins, Segoe UI, Roboto, Arial, sans-serif" font-weight="700" font-size="48">
+    <tspan fill="#2ECC71">Power</tspan><tspan fill="#1e1e1e">Spot</tspan>
+  </text>
+</svg>

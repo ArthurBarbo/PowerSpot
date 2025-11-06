@@ -1,10 +1,11 @@
 {
-  "name": "powerSpot",
+  "name": "powerspot",
   "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite --open"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
   "homepage": "https://github.com/ArthurBarbo/PowerSpot#readme",
   "dependencies": {
     "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.0",
+    "vite": "^7.2.1"
   }
 }
