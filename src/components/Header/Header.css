@@ -1,0 +1,30 @@
+.header__container {
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 6px 8px rgba(127, 192, 255, 1);
+    border-radius: 20px;
+    height: 120px;
+    
+}
+
+.header__logo {
+    height: 80px;
+    width: auto;
+}
+.header__text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: #000000;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.header__menu:hover {
+    color: #1F6FBA;
+    transition: color 0.3s ease;
+}

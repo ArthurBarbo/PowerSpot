@@ -4,11 +4,13 @@ export default function Header(){
 return(
     <header className="header__container"
     >
-        <h1 className="header__text">OLAAA</h1>
-        <img src="./powerspot-logo.png"
+        <img src="../../public/powerspot__logo.jpg"
         alt="PowerSpot Logo"
         className="header__logo"
         />
+        <h2 className="header__text header__menu">Contatos</h2>
+        <h2 className="header__text header__menu">Sobre Nós</h2>
+        <h2 className="header__text header__menu">Entre aqui</h2>
     </header>
 )
 }
