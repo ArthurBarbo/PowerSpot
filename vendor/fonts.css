@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url(../vendor/fonts/Outfit-Regular.woff2) format('woff2');
+         font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url(../vendor/fonts/Outfit-Medium.woff2) format('woff2');
+         font-weight: 400;
+}
