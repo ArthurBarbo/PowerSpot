@@ -1,0 +1,8 @@
+.mapmodal__container {
+    background: #fff;
+    width: 90%;
+    max-width: 800px;
+    height: 70vh; 
+    border-radius: 8px;
+    overflow: hidden;
+  }

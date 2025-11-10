@@ -2,7 +2,7 @@
     max-width: 1280px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 40px;
     padding: 20px;
     background-color: #f8f9fa;
     box-shadow: 0 6px 8px rgba(127, 192, 255, 1);
@@ -12,7 +12,7 @@
 }
 
 .header__logo {
-    height: 80px;
+    height: 300px;
     width: auto;
 }
 .header__text {
@@ -24,7 +24,33 @@
     cursor: pointer;
 }
 
+.header__menu {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: #000000;
+    margin: 0 15px;
+    cursor: pointer;
+    position: relative; 
+    transition: color 0.3s ease;
+}
+
+.header__menu::after {
+    content: '';
+    position: absolute;
+    left: 50%;          
+    bottom: 0;
+    width: 0%;           
+    height: 2px;
+    background-color: #1F6FBA;
+    transform: translateX(-50%);
+    transition: width 0.3s ease; 
+}
+
 .header__menu:hover {
     color: #1F6FBA;
-    transition: color 0.3s ease;
+}
+
+.header__menu:hover::after {
+    width: 100%; 
 }
