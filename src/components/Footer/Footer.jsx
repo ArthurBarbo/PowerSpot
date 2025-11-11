@@ -4,18 +4,18 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className= "Footer__full">
+    <footer className= "footer__full">
       <div className="footer__container">
       <p className="footer__text">©2025 PowerSpot -  Arthur Oliveira. All rights reserved.</p>
       <div className="footer__links-container">
         <a href="https://www.linkedin.com/in/arthur-barbosa-3519941ba/" className="footer__link"
         target="_blank" rel="noopener noreferrer">
-          <img src= "../../public/linkedin.svg" alt="LinkedIn" className="footer__icon" />
+          <img src= "/linkedin.svg" alt="LinkedIn" className="footer__icon" />
           Linkedin
         </a>
         <a href="https://github.com/ArthurBarbo" className="footer__link"
         target="_blank" rel="noopener noreferrer">
-          <img src= "../../public/github.svg" alt="Github" className="footer__icon" />
+          <img src= "/github.svg" alt="Github" className="footer__icon" />
           Github
         </a>
       </div>

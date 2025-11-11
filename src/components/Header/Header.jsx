@@ -4,7 +4,7 @@ export default function Header(){
 return(
     <header className="header__container"
     >
-        <img src="../../public/powerspot__logo.png"
+        <img src="/powerspot__logo.png"
         alt="PowerSpot Logo"
         className="header__logo"
         />

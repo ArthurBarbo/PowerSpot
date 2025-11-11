@@ -65,3 +65,8 @@
     height: 45px;
     margin-right: 10px; 
 }
+/* estilizar para ir de ponta a ponta */
+.footer__full {
+    width: 100%;
+    bottom: 0;
+}

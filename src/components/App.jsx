@@ -1,7 +1,7 @@
 import Header from './Header/Header.jsx';
 import Main from './Main/Main.jsx';
 import Footer from './Footer/Footer.jsx';
-import MapModal from './MapModal/MapModal.jsx';
+import Map from './Map/Map.jsx';
 
 
 export default function App() {
