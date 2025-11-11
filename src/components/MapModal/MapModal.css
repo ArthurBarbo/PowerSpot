@@ -1,8 +1,47 @@
 .mapmodal__container {
-    background: #fff;
-    width: 90%;
-    max-width: 800px;
-    height: 70vh; 
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mapmodal__map {
+  position: relative; 
+  border-radius: 12px;
+  overflow: hidden;   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mapmodal__api {
+  width: 100%;
+  height: auto; 
+  display: block;
+  border-radius: inherit; 
+}
+
+
+.mapmodal__map::before {
+  content: "";
+  position: absolute;
+  inset: 0; 
+  border-radius: inherit;
+  padding: 4px; 
+  pointer-events: none; 
+
+  
+  background: linear-gradient(90deg, #1F6FBA, #6FB8FF);
+
+  
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0; 
+  transition: opacity 0.38s ease; 
+}
+
+
+.mapmodal__map:hover::before {
+  opacity: 1;
+}
