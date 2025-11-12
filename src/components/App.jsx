@@ -6,10 +6,12 @@ import Map from './Map/Map.jsx';
 
 export default function App() {
   return (
-    <div className="app__container">
+    <>
+    <div className="page">
       <Header />
       <Main />
+      </div>
       <Footer />
-    </div>
+      </>
   );
 }
