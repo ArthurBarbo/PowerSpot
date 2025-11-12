@@ -1,0 +1,14 @@
+.popup-login__title{
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: #1F6FBA;
+    text-align: center;
+}
+
+.popup-login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 20px;
+
+}
