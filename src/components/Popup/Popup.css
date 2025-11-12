@@ -16,6 +16,9 @@
   }
   
   .popup__content {
+    border: #1F6FBA 2px solid;
+    left: 350px;
+    top:100px;
     position: relative;
     background: #fff;
     padding: 40px;
