@@ -10,5 +10,19 @@
     flex-direction: column;
     gap: 25px;
     margin-bottom: 20px;
+}
 
+.popup-login__input {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #6FB8FF;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.popup-login__input:focus {
+    border-color:#1F6FBA ; 
+}
+.popup-login__input.error {
+    border-color: #f44336; 
 }
