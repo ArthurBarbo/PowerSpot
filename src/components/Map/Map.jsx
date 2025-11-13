@@ -5,7 +5,7 @@ export default function Map(){
 
     return(
         <div className="map__container">
-            <h2>Mapa de Pontos de Recarga</h2>
+            <h2 className="map__title">Mapa de Pontos de Recarga</h2>
             <div className="map__content">
                 <img src="/Teste.jpg" alt="Mapa de Pontos de Recarga" className="map__api" />
                 <button className="map__btn">

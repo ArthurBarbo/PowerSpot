@@ -1,6 +1,9 @@
 import Map from "../Map/Map";
 import Card from "../Card/Card";
+import Articles from "../Articles/Articles";
+import InfoSection from "../InfoSection/InfoSection";
 import "./Main.css";
+
 export default function Main(){
 
     // template para Api, informar Nome distancia e velocidade de carregamento
@@ -21,9 +24,9 @@ export default function Main(){
             ))}
             </div>
             <Map />
-            <p className="main__description">
-                
-            </p>
+            <p className="main__description"></p>
+            <Articles />
+            <InfoSection/>
         </main>
     )
 }

@@ -1,0 +1,14 @@
+
+.articles__title {
+    font-weight: 600;
+    font-size: 35px;
+    color: #000000;
+    margin: 60px 0 40px 0
+}
+
+
+.articles__media {
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+}
