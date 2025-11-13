@@ -7,6 +7,7 @@ import PopupLogin from './Popup/PopupLogin/PopupLogin.jsx';
 
 
 
+
 export default function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 

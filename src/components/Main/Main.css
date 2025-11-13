@@ -2,6 +2,14 @@
     font-weight: 400;
     font-size: 28px;
     color: #000000;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    
+}
+
+.main__cards{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
     
 }
