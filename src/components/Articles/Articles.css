@@ -1,4 +1,8 @@
-
+.articles__container{
+    align-items: center;
+    margin-bottom: 60px;
+    
+}
 .articles__title {
     font-weight: 600;
     font-size: 35px;
