@@ -4,8 +4,9 @@ import "./InfoSection.css"
 export default function InfoSection() {
     return (
       <>
-        <section className="infoSection__container">
-          <h2 className="infoSection__title">
+      <h2 className="infoSection__title" id="sobre-nos">Sobre nós</h2>
+        <section id className="infoSection__container">
+          <h2 className="infoSection__title-content">
             Por que escolher <span className="bold">PowerSpot?</span>
           </h2>
           <p className="infoSection__text">
@@ -32,7 +33,7 @@ export default function InfoSection() {
         </section>
   
         <section className="infoSection__container">
-          <h2 className="infoSection__title">
+          <h2 className="infoSection__title-content">
             Descubra mais sobre <span className="bold">PowerSpot</span>
           </h2>
           <p className="infoSection__text">
@@ -44,7 +45,7 @@ export default function InfoSection() {
           </p>
 </section>
           <section className="infoSection__container infoSection-last__field">
-            <h2 className="infoSection__title">Quem desenvolveu o PowerSpot?</h2>
+            <h2 className="infoSection__title-content">Quem desenvolveu o PowerSpot?</h2>
             <p className="infoSection__text">
             PowerSpot foi desenvolvido por <span className="bold">Arthur, um Desenvolvedor Júnior apaixonado por tecnologia, interfaces modernas e experiências digitais intuitivas.</span>
 Este projeto foi criado como parte do seu portfólio profissional, demonstrando habilidades em:

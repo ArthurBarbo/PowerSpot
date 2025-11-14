@@ -6,7 +6,12 @@
 .bold:hover {
   color: #0099ff; 
 }
-
+.infoSection__title{
+    font-weight: 600;
+    font-size: 36px;
+    color: #000000;
+    margin: 60px 0 40px 0;
+}
 .infoSection__container {
     margin-top: 20px;
     padding: 20px;
@@ -16,7 +21,7 @@
     
 }
 
-.infoSection__title {
+.infoSection__title-content{ 
     font-weight: 300;
     color: #333333;
     margin-bottom: 16px;
