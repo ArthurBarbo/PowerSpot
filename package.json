@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ArthurBarbo/PowerSpot#readme",
   "dependencies": {
-    "react-router-dom": "^7.9.5"
+    "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.0",

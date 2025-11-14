@@ -48,17 +48,12 @@ export default function InfoSection() {
             <h2 className="infoSection__title-content">Quem desenvolveu o PowerSpot?</h2>
             <p className="infoSection__text">
             PowerSpot foi desenvolvido por <span className="bold">Arthur, um Desenvolvedor Júnior apaixonado por tecnologia, interfaces modernas e experiências digitais intuitivas.</span>
-Este projeto foi criado como parte do seu portfólio profissional, demonstrando habilidades em:
-
-Desenvolvimento Front-end (HTML, CSS, JavaScript, React)
-
-Design de interfaces modernas e responsivas
-
-Integração de APIs e criação de componentes reutilizáveis
-
-Arquitetura modular e boas práticas de desenvolvimento
-
-O site continua evoluindo como uma plataforma real, com foco em qualidade, usabilidade e inovação.
+            Este projeto foi criado como parte do seu portfólio profissional, demonstrando habilidades em:
+            Desenvolvimento Front-end (HTML, CSS, JavaScript, React)
+            Design de interfaces modernas e responsivas
+            Integração de APIs e criação de componentes reutilizáveis
+            Arquitetura modular e boas práticas de desenvolvimento
+            O site continua evoluindo como uma plataforma real, com foco em qualidade, usabilidade e inovação.
   </p>      
         </section>
       </>
