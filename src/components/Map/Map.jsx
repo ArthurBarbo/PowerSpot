@@ -7,12 +7,6 @@ const containerStyle = {
   height: "700px",
 };
 
-const chargingStations = [
-    { id: 1, lat: 38.7175, lng: -9.1380, name: "Estação 1" },
-    { id: 2, lat: 38.7160, lng: -9.1400, name: "Estação 2" },
-    { id: 3, lat: 38.7180, lng: -9.1420, name: "Estação 3" },
-  ];
-
 export default function Map() {
   const mapRef = useRef(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -30,6 +24,8 @@ export default function Map() {
           console.error("Erro ao obter localização:", error);
         }
       );
+    } else{
+        console.error("Geolocalização não suportada pelo navegador");
     }
   }, []);
 
@@ -58,9 +54,9 @@ const mapOptions = {
     streetViewControl: false,
     fullscreenControl: false,
     styles: [
-      { featureType: "poi", stylers: [{ visibility: "off" }] }, // esconde pontos de interesse
-      { featureType: "transit", stylers: [{ visibility: "off" }] }, // transporte público
-      { featureType: "administrative", stylers: [{ visibility: "off" }] }, // labels admin
+      { featureType: "poi", stylers: [{ visibility: "off" }] }, 
+      { featureType: "transit", stylers: [{ visibility: "off" }] }, 
+      { featureType: "administrative", stylers: [{ visibility: "off" }] },
       
     ],
   };
@@ -68,7 +64,7 @@ const mapOptions = {
 
 return (
     <div className="map__container">
-      <h2 className="map__title">Mapa de Pontos de Recarga - Lisboa</h2>
+      <h2 className="map__title">Mapa de Pontos de Recarga </h2>
       <div className="map__content">
         <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}>
           <GoogleMap
