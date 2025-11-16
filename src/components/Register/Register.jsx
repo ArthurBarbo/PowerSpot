@@ -1,12 +1,34 @@
 import "./Register.css";
+import { useNavigate } from "react-router-dom";
+import {useState} from "react"
 
 export default function Register() {
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSuccessMessage("Conta criada com sucesso!");
+
+
+    setTimeout(() => {
+      setSuccessMessage(""); 
+      navigate("/"); 
+    }, 3000);
+  }
+
+
   return (
     <div className="register">
+      {successMessage && (
+        <div className="register__success">
+          {successMessage}
+          </div>
+      )}
       <div className="register__container">
         <h2 className="register__title">Seja um membro <span className="register__bold">Power!</span></h2>
 
-        <form className="register__form form" name="register-form">
+        <form className="register__form form" onSubmit={handleSubmit} name="register-form">
 
           <div className="register__item">
             <label className="register__label" htmlFor="name">Nome</label>
@@ -19,7 +41,7 @@ export default function Register() {
               required
             />
           </div>
-          
+
           <div className="register__item">
             <label className="register__label" htmlFor="Password">Palavra Passe</label>
             <input

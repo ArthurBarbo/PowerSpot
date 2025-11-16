@@ -76,26 +76,16 @@
   
   .register__bold {
     font-weight: 700;
-    display: inline-block; /* necessário */
+    display: inline-block; 
     background: linear-gradient(270deg, #1F6FBA, #6FB8FF, #00FFC3, #1F6FBA);
-    background-size: 600% 600%; /* faz o gradiente ter “espaço para animar” */
+    background-size: 600% 600%; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    animation: gradientShift 5s ease infinite; /* animação infinita */
+    animation: gradientShift 5s ease infinite; 
   }
   
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+  
  
   .register__error {
     font-size: 14px;
@@ -136,6 +126,40 @@
   .register__button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+  }
+  .register__success {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #1F6FBA, #6FB8FF);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInOut 2s forwards;
+}
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   
   /* Responsividade */
