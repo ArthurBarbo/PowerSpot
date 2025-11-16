@@ -6,12 +6,12 @@ export default function Contacts() {
       <div className="contacts__container _container">
         <h2 className="contacts__title">Contato</h2>
 
-        <form className="contacts__form form" name="contacts-form">
+        <form className="contacts__form" name="contacts-form">
 
-          <div className="form__item">
-            <label className="form__label" htmlFor="name">Nome</label>
+          <div className="contacts__item">
+            <label className="contacts__label" htmlFor="name">Nome</label>
             <input
-              className="form__input"
+              className="contacts__input"
               type="text"
               id="name"
               name="name"
@@ -20,10 +20,10 @@ export default function Contacts() {
             />
           </div>
 
-          <div className="form__item">
-            <label className="form__label" htmlFor="email">Email</label>
+          <div className="contacts__item">
+            <label className="contacts__label" htmlFor="email">Email</label>
             <input
-              className="form__input"
+              className="contacts__input"
               type="email"
               id="email"
               name="email"
@@ -33,10 +33,10 @@ export default function Contacts() {
           </div>
 
     
-          <div className="form__item">
-            <label className="form__label" htmlFor="message">Mensagem</label>
+          <div className="contacts__item">
+            <label className="contacts__label" htmlFor="message">Mensagem</label>
             <textarea
-              className="form__input form__textarea"
+              className="contacts__input contacts__textarea"
               id="message"
               name="message"
               placeholder="Escreva sua mensagem..."
@@ -44,7 +44,7 @@ export default function Contacts() {
             />
           </div>
 
-          <button className="form__button" type="submit">
+          <button className="contacts__button" type="submit">
            Enviar Solicitação
           </button>
         </form>

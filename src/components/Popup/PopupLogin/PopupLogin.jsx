@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react';
 import Popup from "../Popup";
 import "./PopupLogin.css";
+import { Link } from 'react-router-dom';
 
 export default function PopupLogin({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
@@ -83,6 +84,10 @@ export default function PopupLogin({ isOpen, onClose }) {
         disabled={!isFormValid}>
           Ver minhas Preferências
         </button>
+        <p className="popup-login__signup-text">
+          Ainda não é um membro? <Link to={"/register"} className="popup-login__signup-link" onClick={onClose}>Seja Power⚡
+          </Link>
+          </p>
       </form>
     </Popup>
   );

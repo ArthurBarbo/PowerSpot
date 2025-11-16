@@ -15,6 +15,8 @@
     height: 370px;
     width: auto;
     padding-top: 13px;
+    text-decoration: none; 
+    color: inherit;
 }
 .header__text {
     font-family: 'Outfit', sans-serif;
@@ -23,6 +25,7 @@
     color: #000000;
     margin: 0 15px;
     cursor: pointer;
+    
 }
 
 .header__menu {
@@ -34,7 +37,13 @@
     cursor: pointer;
     position: relative; 
     transition: color 0.3s ease;
+    text-decoration: none !important;
+    
 }
+.header__link {
+    text-decoration: none; 
+    color: inherit;
+  }
 
 .header__menu::after {
     content: '';
@@ -54,4 +63,12 @@
 
 .header__menu:hover::after {
     width: 100%; 
+}
+
+.header__menu,
+.header__menu:link,
+.header__menu:visited,
+.header__menu:hover,
+.header__menu:active {
+  text-decoration: none !important;
 }

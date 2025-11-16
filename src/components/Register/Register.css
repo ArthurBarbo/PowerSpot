@@ -1,4 +1,4 @@
-.contacts {
+.register {
     margin: 40px 0 40px 0;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
 
   
  
-  .contacts__container {
+  .register__container {
     max-width: 600px;
     width: 100%;
     background-color: #ffffff;
@@ -26,7 +26,7 @@
   }
   
 
-  .contacts__title {
+  .register__title {
     font-size: 32px;
     text-align: center;
     color: #1F6FBA;
@@ -35,26 +35,26 @@
     margin-bottom: 30px;
   }
   
-  .contacts__form {
+  .register__form {
     display: flex;
     flex-direction: column;
     gap: 25px;
   }
   
  
-  .contacts__item {
+  .register__item {
     display: flex;
     flex-direction: column;
   }
   
-  .contacts__label {
+  .register__label {
     margin-bottom: 8px;
     font-size: 16px;
     font-weight: 600;
     color: #333;
   }
   
-  .contacts__input {
+  .register__input {
     padding: 12px;
     font-size: 16px;
     border: 2px solid #6FB8FF;
@@ -63,19 +63,41 @@
     transition: border-color 0.3s ease;
   }
   
-  .contacts__input:focus {
+  .register__input:focus {
     border-color: #1F6FBA;
   }
   
   
-  .contacts__input.error,
-  .contacts__input:invalid:focus,
-  .contacts__input:invalid:focus-visible {
+  .register__input.error,
+  .register__input:invalid:focus,
+  .register__input:invalid:focus-visible {
     border-color: #f44336;
   }
   
+  .register__bold {
+    font-weight: 700;
+    display: inline-block; /* necessário */
+    background: linear-gradient(270deg, #1F6FBA, #6FB8FF, #00FFC3, #1F6FBA);
+    background-size: 600% 600%; /* faz o gradiente ter “espaço para animar” */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientShift 5s ease infinite; /* animação infinita */
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
  
-  .contacts__error {
+  .register__error {
     font-size: 14px;
     color: #f44336;
     min-height: 18px;
@@ -84,18 +106,18 @@
     transition: opacity 0.3s ease;
   }
   
-  .contacts__input:invalid:focus + .contacts__error {
+  .register__input:invalid:focus + .register__error {
     opacity: 1;
   }
   
   /* Textarea */
-  .contacts__textarea {
+  .register__textarea {
     min-height: 100px;
     resize: vertical;
   }
   
   /* Botão */
-  .contacts__button {
+  .register__button {
     padding: 12px;
     font-size: 18px;
     background-color: #1F6FBA;
@@ -106,28 +128,28 @@
     transition: background-color 0.3s ease;
   }
   
-  .contacts__button:hover {
+  .register__button:hover {
     background-color: #0f4d91;
   }
   
   /* Botão desabilitado */
-  .contacts__button:disabled {
+  .register__button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
   
   /* Responsividade */
   @media (max-width: 600px) {
-    .contacts__container {
+    .register__container {
       padding: 30px 20px;
     }
   
-    .contacts__title {
+    .register__title {
       font-size: 28px;
     }
   
-    .contacts__input,
-    .contacts__textarea {
+    .register__input,
+    .register__textarea {
       font-size: 15px;
     }
   

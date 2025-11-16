@@ -19,8 +19,7 @@ export default function InfoSection() {
           </p>
           <p className="infoSection__text">
             Cada clique é pensado para simplificar sua experiência,
-            conectando você aos pontos de recarga mais próximos, mostrando
-            <span className="bold">informações detalhadas</span> de cada estação e permitindo explorar
+            conectando você aos pontos de recarga mais próximos, mostrando <span className="bold">informações detalhadas</span> de cada estação e permitindo explorar
             conteúdos adicionais com facilidade.
           </p>
           <p className="infoSection__text">
@@ -47,7 +46,7 @@ export default function InfoSection() {
           <section className="infoSection__container infoSection-last__field">
             <h2 className="infoSection__title-content">Quem desenvolveu o PowerSpot?</h2>
             <p className="infoSection__text">
-            PowerSpot foi desenvolvido por <span className="bold">Arthur, um Desenvolvedor Júnior apaixonado por tecnologia, interfaces modernas e experiências digitais intuitivas.</span>
+            PowerSpot foi desenvolvido por <span className="bold">Arthur, um Desenvolvedor Júnior apaixonado por tecnologia, interfaces modernas e experiências digitais intuitivas. </span>
             Este projeto foi criado como parte do seu portfólio profissional, demonstrando habilidades em:
             Desenvolvimento Front-end (HTML, CSS, JavaScript, React)
             Design de interfaces modernas e responsivas
