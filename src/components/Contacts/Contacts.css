@@ -1,0 +1,142 @@
+.contacts {
+    margin: 40px 0 40px 0;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+   
+   background-color: #f5f7fa; 
+  background-image: repeating-linear-gradient(
+    45deg,       
+    #6FB8FF 0px, 
+    #6FB8FF 1px, 
+    transparent 2px, 
+    transparent 10px
+  );
+}
+
+  
+ 
+  .contacts__container {
+    max-width: 600px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .contacts__title {
+    font-size: 32px;
+    text-align: center;
+    color: #1F6FBA;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  
+  .contacts__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+ 
+  .form__item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form__label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form__input {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #6FB8FF;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form__input:focus {
+    border-color: #1F6FBA;
+  }
+  
+  
+  .form__input.error,
+  .form__input:invalid:focus,
+  .form__input:invalid:focus-visible {
+    border-color: #f44336;
+  }
+  
+ 
+  .form__error {
+    font-size: 14px;
+    color: #f44336;
+    min-height: 18px;
+    margin-top: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .form__input:invalid:focus + .form__error {
+    opacity: 1;
+  }
+  
+  /* Textarea */
+  .form__textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* Botão */
+  .form__button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #1F6FBA;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form__button:hover {
+    background-color: #0f4d91;
+  }
+  
+  /* Botão desabilitado */
+  .form__button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 600px) {
+    .contacts__container {
+      padding: 30px 20px;
+    }
+  
+    .contacts__title {
+      font-size: 28px;
+    }
+  
+    .form__input,
+    .form__textarea {
+      font-size: 15px;
+    }
+  
+    .form__button {
+      font-size: 16px;
+    }
+  }
+  
+  
+  
+  
+  

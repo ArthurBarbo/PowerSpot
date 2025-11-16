@@ -8,7 +8,7 @@ return(
         alt="PowerSpot Logo"
         className="header__logo"
         />
-        <h2 className="header__text header__menu">Contatos</h2>
+        <h2 className="header__text header__menu">Contato</h2>
         
         <h2 className="header__text header__menu"
     onClick={() => {

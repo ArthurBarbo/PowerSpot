@@ -4,7 +4,8 @@ import Footer from './Footer/Footer.jsx';
 import Map from './Map/Map.jsx';
 import React, { useState } from 'react';
 import PopupLogin from './Popup/PopupLogin/PopupLogin.jsx';
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Contacts from './Contacts/Contacts.jsx';
 
 
 
@@ -15,14 +16,23 @@ export default function App() {
 
   return (
     <>
-    <div className="page">
-      <Header openLogin={() =>setIsPopupOpen(true)}/>
-      <Main />
-      </div>
-      <Footer />
+      <div className="page">
+        <Header openLogin={() => setIsPopupOpen(true)} />
 
-      <PopupLogin isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}
-        />
-      </>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Routes>
+
+        </div>
+        <Footer />
+     
+
+     
+      <PopupLogin
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
+    </>
   );
 }
