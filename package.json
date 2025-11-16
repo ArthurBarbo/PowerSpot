@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ArthurBarbo/PowerSpot#readme",
   "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
