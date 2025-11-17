@@ -14,7 +14,7 @@ export default function Articles() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          frameborder="0"
+          frameBorder="0"
         ></iframe>
 
 
@@ -22,10 +22,10 @@ export default function Articles() {
          height="315" 
          src="https://www.youtube.com/embed/-HDB4IDKDiE?si=QzKDY5lN9wSJTk2C" 
          title="Posso ligar o carro elétrico em qualquer tomada?" 
-         frameborder="0" 
+         frameBorder="0" 
          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-         referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
+         referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen>
 
           </iframe>
       </div>

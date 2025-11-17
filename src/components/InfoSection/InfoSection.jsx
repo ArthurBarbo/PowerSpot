@@ -5,7 +5,7 @@ export default function InfoSection() {
     return (
       <>
       <h2 className="infoSection__title" id="sobre-nos">Sobre nós</h2>
-        <section id className="infoSection__container">
+        <section className="infoSection__container">
           <h2 className="infoSection__title-content">
             Por que escolher <span className="bold">PowerSpot?</span>
           </h2>
