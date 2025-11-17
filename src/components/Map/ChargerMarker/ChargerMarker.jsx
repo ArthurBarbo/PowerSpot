@@ -1,7 +1,6 @@
-import "./ChargerMarker.css";
 import { useEffect } from "react";
 
-export default function ChargerMarker({ place, map, userLocation, onClick }) {
+export default function ChargerMarker({ place, map, userLocation }) {
   useEffect(() => {
     if (!map || !place || !userLocation) return;
 
@@ -9,7 +8,6 @@ export default function ChargerMarker({ place, map, userLocation, onClick }) {
       map,
       position: place.geometry.location,
       title: place.name,
-      icon: "/charger-icon.png", // seu ícone personalizado
     });
 
     const infoWindow = new window.google.maps.InfoWindow();
@@ -28,7 +26,7 @@ export default function ChargerMarker({ place, map, userLocation, onClick }) {
           new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
         );
 
-        // Filtrar tipos de carregamento
+        // Filtrar tipos de carregamento (simplificação usando types do Google Places)
         const chargingType = details.types.includes("electric_vehicle_charging_station")
           ? "Carregamento elétrico"
           : details.types.join(", ");
@@ -43,19 +41,15 @@ export default function ChargerMarker({ place, map, userLocation, onClick }) {
           </div>
         `;
 
-        // Abre InfoWindow ao clicar no marker
         marker.addListener("click", () => {
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
-
-          // Opcional: dispara callback para mostrar nos cards
-          if (onClick) onClick(details);
         });
       }
     });
 
-    return () => marker.setMap(null);
-  }, [map, place, userLocation, onClick]);
+    return () => marker.setMap(null); // limpa marker ao desmontar
+  }, [map, place, userLocation]);
 
   return null;
 }

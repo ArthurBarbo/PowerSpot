@@ -47,27 +47,28 @@ export default function Map() {
     streetViewControl: false,
     fullscreenControl: false,
     styles: [
-      { featureType: "poi", stylers: [{ visibility: "off" }] },
-      { featureType: "transit", stylers: [{ visibility: "off" }] },
+      { featureType: "poi", stylers: [{ visibility: "on" }] },
+      { featureType: "transit", stylers: [{ visibility: "on" }] },
       { featureType: "administrative", stylers: [{ visibility: "off" }] },
     ],
   };
 
   // Função para buscar e renderizar carregadores
   const fetchChargers = () => {
-    if (!mapRef.current || !window.google || !userLocation) return;
+    if (!mapRef.current || !window.google) return;
+
+    const bounds = mapRef.current.getBounds();
+    if(!bounds)return;
 
     const service = new window.google.maps.places.PlacesService(mapRef.current);
 
     const request = {
-      location: userLocation,
-      radius: 3000, 
+      bounds: bounds, 
       type: "electric_vehicle_charging_station",
     };
 
     service.nearbySearch(request, (results, status) => {
-      console.log("NearbySearch status:", status);
-      console.log("NearbySearch results:", results);
+    
 
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
        setChargers(results);
@@ -79,13 +80,13 @@ export default function Map() {
     });
   };
 
-  if (!userLocation) return <p>Obtendo sua localização...</p>;
 
   return (
     <div className="map__container">
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
-        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} libraries={libraries}>
+        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} 
+        libraries={libraries}>
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation}
@@ -111,7 +112,7 @@ export default function Map() {
         <button
           className="map__btn"
           onClick={() => {
-            fetchChargers(); // Atualiza carregadores ao clicar
+            fetchChargers();
           }}
         >
           <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
