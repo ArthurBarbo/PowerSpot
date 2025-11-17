@@ -56,7 +56,6 @@ export default function Map() {
     const ne = bounds.getNorthEast();
     const sw = bounds.getSouthWest();
 
-    // Pegando o centro da área visível para a busca
     const center = mapRef.current.getCenter();
     const lat = center.lat();
     const lng = center.lng();
@@ -90,11 +89,11 @@ export default function Map() {
     <div className="map__container">
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
-        <LoadScript
+        {/* <LoadScript
           googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}
           libraries={libraries}
         >
-          <GoogleMap
+          {/* <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation}
             zoom={14}
@@ -113,8 +112,7 @@ export default function Map() {
               />
             ))}
           </GoogleMap>
-        </LoadScript>
-
+        </LoadScript> */} 
         <button className="map__btn" onClick={fetchChargers}>
           <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
           <span className="map__btn-text">Atualizar</span>
