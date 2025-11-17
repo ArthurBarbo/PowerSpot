@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "./ChargerMarker.css"; // Para estilizar o InfoWindow, se quiser
 
 export default function ChargerMarker({ place, map, userLocation }) {
   useEffect(() => {
@@ -15,27 +16,32 @@ export default function ChargerMarker({ place, map, userLocation }) {
 
     const request = {
       placeId: place.place_id,
-      fields: ["name", "formatted_address", "types", "geometry", "rating", "user_ratings_total"],
+      fields: [
+        "name",
+        "formatted_address",
+        "types",
+        "geometry",
+        "rating",
+        "user_ratings_total",
+      ],
     };
 
     service.getDetails(request, (details, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+      if (
+        status === window.google.maps.places.PlacesServiceStatus.OK &&
+        details.types?.includes("electric_vehicle_charging_station") // Filtra somente carregadores
+      ) {
         // Calcular distância aproximada
         const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
           details.geometry.location,
           new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
         );
 
-        // Filtrar tipos de carregamento (simplificação usando types do Google Places)
-        const chargingType = details.types.includes("electric_vehicle_charging_station")
-          ? "Carregamento elétrico"
-          : details.types.join(", ");
-
         const content = `
-          <div>
+          <div class="custom-infowindow">
             <h3>${details.name}</h3>
             <p>Distância: ${(distance / 1000).toFixed(2)} km</p>
-            <p>Tipo: ${chargingType}</p>
+            <p>Tipo: Carregamento elétrico</p>
             <p>Endereço: ${details.formatted_address || "N/A"}</p>
             <p>Rating: ${details.rating || "N/A"} (${details.user_ratings_total || 0} avaliações)</p>
           </div>
@@ -45,10 +51,14 @@ export default function ChargerMarker({ place, map, userLocation }) {
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
         });
+      } else {
+        // Se não for estação de carregamento, remove o marker
+        marker.setMap(null);
       }
     });
 
-    return () => marker.setMap(null); // limpa marker ao desmontar
+    // Limpeza ao desmontar
+    return () => marker.setMap(null);
   }, [map, place, userLocation]);
 
   return null;

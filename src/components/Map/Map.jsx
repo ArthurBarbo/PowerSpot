@@ -26,22 +26,15 @@ export default function Map() {
             lng: position.coords.longitude,
           });
         },
-        (error) => {
-          console.warn(
-            "Não foi possível obter a localização, usando fallback:",
-            error.code,
-            error.message
-          );
+        () => {
           setUserLocation(defaultLocation);
         }
       );
     } else {
-      console.warn("Geolocalização não suportada pelo navegador. Usando fallback.");
       setUserLocation(defaultLocation);
     }
   }, []);
 
-  // Options do mapa
   const mapOptions = {
     mapTypeControl: false,
     streetViewControl: false,
@@ -53,40 +46,54 @@ export default function Map() {
     ],
   };
 
-  // Função para buscar e renderizar carregadores
-  const fetchChargers = () => {
-    if (!mapRef.current || !window.google) return;
+  
+  const fetchChargers = async () => {
+    if (!mapRef.current || !userLocation) return;
 
     const bounds = mapRef.current.getBounds();
-    if(!bounds)return;
+    if (!bounds) return;
 
-    const service = new window.google.maps.places.PlacesService(mapRef.current);
+    const ne = bounds.getNorthEast();
+    const sw = bounds.getSouthWest();
 
-    const request = {
-      bounds: bounds, 
-      type: "electric_vehicle_charging_station",
-    };
+    // Pegando o centro da área visível para a busca
+    const center = mapRef.current.getCenter();
+    const lat = center.lat();
+    const lng = center.lng();
 
-    service.nearbySearch(request, (results, status) => {
-    
+    // Requisição HTTP para a nova Places API
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=3000&type=electric_vehicle_charging_station&key=${import.meta.env.VITE_GOOGLE_MAPS_KEY}`
+      );
+      const data = await response.json();
 
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-       setChargers(results);
+      if (data.results) {
+        
+        const evChargers = data.results.filter(
+          place =>
+            place.geometry?.location &&
+            place.types?.includes("electric_vehicle_charging_station")
+        );
 
-      } else {
-        console.warn("Não foi possível buscar carregadores:", status);
-        setChargers([]);
+        setChargers(evChargers);
       }
-    });
+    } catch (error) {
+      console.error("Erro ao buscar carregadores:", error);
+      setChargers([]);
+    }
   };
 
+  if (!userLocation) return <p>Obtendo sua localização...</p>;
 
   return (
     <div className="map__container">
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
-        <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY} 
-        libraries={libraries}>
+        <LoadScript
+          googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}
+          libraries={libraries}
+        >
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation}
@@ -96,25 +103,19 @@ export default function Map() {
               mapRef.current = map;
               fetchChargers();
             }}
-            >
-           
-    {chargers.map((place) => (
-      <ChargerMarker
-        key={place.place_id}
-        place={place}
-        map={mapRef.current}
-        userLocation={userLocation}
-      />
-    ))}
-        </GoogleMap>
+          >
+            {chargers.map((place) => (
+              <ChargerMarker
+                key={place.place_id}
+                place={place}
+                map={mapRef.current}
+                userLocation={userLocation}
+              />
+            ))}
+          </GoogleMap>
         </LoadScript>
 
-        <button
-          className="map__btn"
-          onClick={() => {
-            fetchChargers();
-          }}
-        >
+        <button className="map__btn" onClick={fetchChargers}>
           <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
           <span className="map__btn-text">Atualizar</span>
         </button>

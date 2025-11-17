@@ -1,30 +1,21 @@
 .custom-infowindow {
-    background-color: #ffffff;
-    padding: 12px 16px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    font-family: 'Arial', sans-serif;
-    color: #333333;
-    max-width: 220px;
-  }
-  
-  .custom-infowindow h3 {
-    margin: 0 0 6px 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #0077ff;
-  }
-  
-  .custom-infowindow p {
-    margin: 2px 0;
-    font-size: 14px;
-  }
-  
-  .custom-infowindow p:first-of-type {
-    font-weight: bold;
-  }
-  
-  .custom-infowindow p:last-of-type {
-    color: #555;
-    font-size: 13px;
-  }
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: 'Arial', sans-serif;
+  color: #333333;
+  max-width: 220px;
+}
+
+.custom-infowindow h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0077ff;
+}
+
+.custom-infowindow p {
+  margin: 2px 0;
+  font-size: 14px;
+}
