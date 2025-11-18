@@ -4,18 +4,10 @@
     justify-content: center;
     padding: 60px 20px;
    
-   background-color: #f5f7fa; 
-  background-image: repeating-linear-gradient(
-    45deg,       
-    #6FB8FF 0px, 
-    #6FB8FF 1px, 
-    transparent 2px, 
-    transparent 10px
-  );
+    background-color: #f5f7fa;
+  background-image: radial-gradient(#6FB8FF 0.7px, transparent 1px);
+  background-size: 20px 20px;
 }
-
-  
- 
   .contacts__container {
     max-width: 600px;
     width: 100%;
@@ -88,13 +80,13 @@
     opacity: 1;
   }
   
-  /* Textarea */
+ 
   .contacts__textarea {
     min-height: 100px;
     resize: vertical;
   }
   
-  /* Botão */
+ 
   .contacts__button {
     padding: 12px;
     font-size: 18px;
@@ -115,8 +107,25 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+  .contacts__success {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #1F6FBA, #6FB8FF);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInOut 2s forwards;
+    font-weight: 400;
+}
   
-  /* Responsividade */
+  
   @media (max-width: 600px) {
     .contacts__container {
       padding: 30px 20px;

@@ -12,7 +12,7 @@ export default function Main(){
         {id: 2, title: "Ponto de Recarga Solar", description: "Aproveite a energia limpa e sustentável com nosso ponto de recarga alimentado por energia solar."},
         {id: 3, title: "Recarga Inteligente", description: "Nossa estação de recarga inteligente otimiza o tempo e o consumo de energia para você."},
         {id: 4, title: "Estação de Recarga 24/7", description: "Recarga seu veículo a qualquer hora do dia ou da noite com nossa estação de recarga 24 horas."},
-        {id: 5, title: "Recarga Rápida em Shopping", description: "Enquanto faz suas compras"}
+        
     ];
 
     return(

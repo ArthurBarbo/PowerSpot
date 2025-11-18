@@ -72,3 +72,57 @@
 .header__menu:active {
   text-decoration: none !important;
 }
+
+
+@media (max-width: 1064px) {
+    .header__container {
+        justify-content: center;
+        gap: 20px;             /* reduz o espaçamento */
+        padding: 15px;
+    }
+
+    .header__logo {
+        max-height: 237px;
+        margin-right:40px;     /* reduz o tamanho da logo */
+    }
+
+    .header__text,
+    .header__menu {
+        font-size: 17px;       /* reduz levemente o texto */
+        margin: 8px 10px;
+    }
+}
+
+@media (max-width: 705px) {
+
+    .header__container {
+        justify-content: center;
+        gap: 10px;             /* reduz o espaçamento */
+        padding: 15px;
+    }
+    .header__logo {
+        margin: 0
+        
+    }
+}
+
+/* --- Celular --- */
+@media (max-width: 480px) {
+    .header__container {
+        flex-direction: column; /* empilha itens */
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        height: auto;
+    }
+
+    .header__logo {
+        max-height: 100px;     /* logo ainda menor */
+    }
+
+    .header__text,
+    .header__menu {
+        font-size: 18px;       /* textos menores */
+        margin: 5px 0;
+    }
+}

@@ -37,3 +37,9 @@
 .infoSection-last__field {
     margin-bottom: 60px;
 }
+
+
+@media (max-width: 1054px) {
+    .infoSection__title{ font-size:30px}
+
+}

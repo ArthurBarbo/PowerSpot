@@ -100,13 +100,13 @@
     opacity: 1;
   }
   
-  /* Textarea */
+ 
   .register__textarea {
     min-height: 100px;
     resize: vertical;
   }
   
-  /* Botão */
+  
   .register__button {
     padding: 12px;
     font-size: 18px;
@@ -141,6 +141,7 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     opacity: 0;
     animation: fadeInOut 2s forwards;
+    font-weight: 400;
 }
   
   @keyframes fadeInOut {
