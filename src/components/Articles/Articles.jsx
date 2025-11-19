@@ -6,9 +6,7 @@ export default function Articles() {
       <h2 className="articles__title">Artigos</h2>
 
       <div className="articles__media">
-        <iframe
-          width="560"
-          height="315"
+        <iframe className="articles__video"
           src="https://www.youtube.com/embed/pioip4wYhHs?si=YobzV9_QK3FbGZgj"
           title="Diferença entre Carros Elétricos ou Híbridos"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -18,8 +16,7 @@ export default function Articles() {
         ></iframe>
 
 
-        <iframe width="560"
-         height="315" 
+        <iframe iframe className="articles__video"
          src="https://www.youtube.com/embed/-HDB4IDKDiE?si=QzKDY5lN9wSJTk2C" 
          title="Posso ligar o carro elétrico em qualquer tomada?" 
          frameBorder="0" 

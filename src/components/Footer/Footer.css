@@ -68,3 +68,17 @@
     margin-right: 10px; 
 }
 
+
+@media (max-width:650px) {
+    .footer__text {
+  
+       
+        font-size: 15px;
+    }
+    
+    .footer__icon {
+        width: 25px;
+        height: 30px;
+        margin-right: 10px; 
+    }
+}    

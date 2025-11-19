@@ -49,3 +49,11 @@
 
 
 
+@media (max-width: 650px) {
+  .card__description {
+    margin-top: 12px;
+    height: auto
+    
+}
+}
+

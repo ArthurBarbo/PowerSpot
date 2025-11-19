@@ -42,4 +42,16 @@
 @media (max-width: 1054px) {
     .infoSection__title{ font-size:30px}
 
-}
+    .infoSection__title-content{ 
+        font-size: 15px;
+    }
+    .infoSection__text{
+       
+        font-size: 14px;
+    }
+
+} 
+
+
+
+
