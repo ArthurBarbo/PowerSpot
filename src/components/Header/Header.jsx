@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 export default function Header({openLogin}) {
-
+    const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
     const showSobreNos = location.pathname ==="/";
 
@@ -13,7 +13,13 @@ return(
         alt="PowerSpot Logo"
         className="header__logo"
         />
-    
+        <div 
+        className="header__hamburger"
+        onClick={()=> setMenuOpen(!menuOpen)}
+        >
+         <img className="header__list" src={menuOpen ? "/list_up.svg" : "/list.svg"} alt="Logo para abrir o menu" />
+        </div>
+        <nav className={`header__menuContainer ${menuOpen? "open" : ""}`}>
         <Link className="header__link" to="/">
         <h2 className="header__text header__menu">Início</h2>
         </Link>
@@ -31,6 +37,7 @@ return(
     </h2>
         )}
         <h2 className="header__text header__menu" onClick={openLogin}>Acesse suas preferências</h2>
+        </nav>
     </header>
 )
 }
