@@ -1,6 +1,6 @@
 import "./Map.css";
 import React, { useEffect, useRef, useState } from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import ChargerMarker from "./ChargerMarker/ChargerMarker";
 
 const containerStyle = {
@@ -8,27 +8,26 @@ const containerStyle = {
   height: "700px",
 };
 
-const libraries = ["places"];
+const LIBRARIES = ["places", "marker", "geometry"];
 
 export default function Map() {
   const mapRef = useRef(null);
   const [userLocation, setUserLocation] = useState(null);
   const [chargers, setChargers] = useState([]);
+  const [mapsLoaded, setMapsLoaded] = useState(false);
 
   const defaultLocation = { lat: 38.7169, lng: -9.1397 };
 
+  // Pega localização do usuário
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        (position) =>
           setUserLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
-        },
-        () => {
-          setUserLocation(defaultLocation);
-        }
+          }),
+        () => setUserLocation(defaultLocation)
       );
     } else {
       setUserLocation(defaultLocation);
@@ -39,49 +38,61 @@ export default function Map() {
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
-    styles: [
-      { featureType: "poi", stylers: [{ visibility: "on" }] },
-      { featureType: "transit", stylers: [{ visibility: "on" }] },
-      { featureType: "administrative", stylers: [{ visibility: "off" }] },
-    ],
+    mapId: import.meta.env.VITE_MAPS_ID,
   };
 
-  
+  // Ícone do usuário só criado quando mapsLoaded = true
+  const userIcon = mapsLoaded && window.google?.maps ? {
+    path: window.google.maps.SymbolPath.CIRCLE,
+    scale: 10,
+    fillColor: "#4285F4",
+    fillOpacity: 1,
+    strokeWeight: 2,
+    strokeColor: "white",
+  } : null;
+
+  // Busca carregadores usando a nova API de Places
   const fetchChargers = async () => {
-    if (!mapRef.current || !userLocation) return;
+    if (!mapsLoaded || !mapRef.current || !window.google?.maps) return;
 
-    const bounds = mapRef.current.getBounds();
-    if (!bounds) return;
-
-    const ne = bounds.getNorthEast();
-    const sw = bounds.getSouthWest();
-
-    const center = mapRef.current.getCenter();
-    const lat = center.lat();
-    const lng = center.lng();
-
-    // Requisição HTTP para a nova Places API
     try {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=3000&type=electric_vehicle_charging_station&key=${import.meta.env.VITE_GOOGLE_MAPS_KEY}`
-      );
-      const data = await response.json();
+      const { Place } = await window.google.maps.importLibrary("places");
 
-      if (data.results) {
-        
-        const evChargers = data.results.filter(
-          place =>
-            place.geometry?.location &&
-            place.types?.includes("electric_vehicle_charging_station")
-        );
+      const center = mapRef.current.getCenter();
 
-        setChargers(evChargers);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar carregadores:", error);
+      const request = {
+        locationRestriction: {
+          center: { lat: center.lat(), lng: center.lng() },
+          radius: 3000,
+        },
+        includedTypes: ["electric_vehicle_charging_station"],
+        fields: ["displayName", "location", "formattedAddress"], // <- removi placeId
+      };
+      
+      const { places } = await Place.searchNearby(request);
+      
+      const normalized = results.map(p => ({
+        place_id: p[1], // ou p.place_id se estiver usando PlacesService antigo
+        name: p[8] || "Carregador",
+        formatted_address: p[8] || "Endereço indisponível",
+        geometry: {
+          location: new window.google.maps.LatLng(p[11][0], p[11][1])
+        }
+      }));
+      setChargers(normalized);
+  
+    } catch (err) {
+      console.error("Erro ao buscar carregadores:", err);
       setChargers([]);
     }
   };
+
+  // Atualiza carregadores assim que o mapa estiver carregado
+  useEffect(() => {
+    if (mapsLoaded && mapRef.current) {
+      fetchChargers();
+    }
+  }, [mapsLoaded]);
 
   if (!userLocation) return <p>Obtendo sua localização...</p>;
 
@@ -89,32 +100,42 @@ export default function Map() {
     <div className="map__container">
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
-        {/* <LoadScript
+        <LoadScript
           googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}
-          libraries={libraries}
+          libraries={LIBRARIES}
+          onLoad={() => setMapsLoaded(true)}
         >
-          {/* <GoogleMap
+          <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation}
             zoom={14}
             options={mapOptions}
             onLoad={(map) => {
               mapRef.current = map;
-              fetchChargers();
+              setMapsLoaded(true);
             }}
           >
-            {chargers.map((place) => (
-              <ChargerMarker
-                key={place.place_id}
-                place={place}
-                map={mapRef.current}
-                userLocation={userLocation}
-              />
-            ))}
+            {/* Marker do usuário só se userIcon existir */}
+            {userLocation && userIcon && <Marker position={userLocation} icon={userIcon} />}
+
+            {/* Markers de carregadores */}
+            {chargers.map((place, idx) => (
+            <ChargerMarker
+              key={place.place_id || idx} // fallback para índice se place_id não existir
+              place={place}
+              map={mapRef.current}
+              userLocation={userLocation}
+            />
+          ))}
           </GoogleMap>
-        </LoadScript> */} 
+        </LoadScript>
+
         <button className="map__btn" onClick={fetchChargers}>
-          <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
+          <img
+            src="/Charge.png"
+            alt="Atualizar Carregadores"
+            className="map__icon"
+          />
           <span className="map__btn-text">Atualizar</span>
         </button>
       </div>

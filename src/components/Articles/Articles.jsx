@@ -16,7 +16,7 @@ export default function Articles() {
         ></iframe>
 
 
-        <iframe iframe className="articles__video"
+        <iframe className="articles__video"
          src="https://www.youtube.com/embed/-HDB4IDKDiE?si=QzKDY5lN9wSJTk2C" 
          title="Posso ligar o carro elétrico em qualquer tomada?" 
          frameBorder="0" 
