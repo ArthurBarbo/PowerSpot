@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./ChargerMarker.css";
 
-export default function ChargerMarker({ place, map, userLocation }) {
+export default function ChargerMarker({ place, map, userLocation, activePlaceId }) {
   useEffect(() => {
     if (!map || !place || !place.geometry?.location || !userLocation) return;
 
@@ -9,11 +9,12 @@ export default function ChargerMarker({ place, map, userLocation }) {
       map,
       position: place.geometry.location,
       title: place.name || "Carregador",
+    
     });
 
     const infoWindow = new window.google.maps.InfoWindow();
 
-    // Calcular distância entre usuário e o carregador
+    
     const distance =
       window.google.maps.geometry.spherical.computeDistanceBetween(
         place.geometry.location,
@@ -32,6 +33,12 @@ export default function ChargerMarker({ place, map, userLocation }) {
       infoWindow.setContent(content);
       infoWindow.open(map, marker);
     });
+
+    if (activePlaceId === place.place_id) {
+      openInfo();
+      map.panTo(place.geometry.location); // centraliza no marker
+    }
+  
 
     return () => marker.setMap(null);
   }, [map, place, userLocation]);

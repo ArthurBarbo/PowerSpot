@@ -1,20 +1,21 @@
-@keyframes slideIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-50px); 
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
 
+
+.card__content{display:flex;
+flex-direction: column;
+flex-grow: 1;}
+
+.card__title{
+  font-size: 17px;
+  display: flex;
+  
+  
+}
 .card__image {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
+    margin-bottom: 30px;
 }
 
 .card {
@@ -26,20 +27,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    opacity: 0;
     animation: slideIn 0.9s forwards;
 }
 
 .card__description {
     margin-top: 12px;
-    height: 100px;
+    margin-bottom: auto;
+  
     
 }
 
 .card__touched{
     color:#a19c9cd8;
-    margin:0;
+    margin-top: 40px; 
+    
     cursor: pointer;
 }
 .card__touched:hover{
@@ -52,8 +53,18 @@
 @media (max-width: 650px) {
   .card__description {
     margin-top: 12px;
-    height: auto
+    
     
 }
 }
 
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
