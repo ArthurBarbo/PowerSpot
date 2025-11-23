@@ -18,7 +18,7 @@ export default function Map() {
 
   const defaultLocation = { lat: 38.7169, lng: -9.1397 };
 
-  // Pega localização do usuário
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -41,7 +41,7 @@ export default function Map() {
     mapId: import.meta.env.VITE_MAPS_ID,
   };
 
-  // Ícone do usuário só criado quando mapsLoaded = true
+  
   const userIcon = mapsLoaded && window.google?.maps ? {
     path: window.google.maps.SymbolPath.CIRCLE,
     scale: 10,
@@ -51,7 +51,7 @@ export default function Map() {
     strokeColor: "white",
   } : null;
 
-  // Busca carregadores usando a nova API de Places
+ 
   const fetchChargers = async () => {
     if (!mapsLoaded || !mapRef.current || !window.google?.maps) return;
 
@@ -71,14 +71,20 @@ export default function Map() {
       
       const { places } = await Place.searchNearby(request);
       
-      const normalized = results.map(p => ({
-        place_id: p[1], // ou p.place_id se estiver usando PlacesService antigo
-        name: p[8] || "Carregador",
-        formatted_address: p[8] || "Endereço indisponível",
-        geometry: {
-          location: new window.google.maps.LatLng(p[11][0], p[11][1])
-        }
-      }));
+      const normalized = places.map((p, idx) => {
+        const loc = p.location;
+        if (!loc?.lat || !loc?.lng) return null;
+      
+        return {
+          place_id: p.id || idx,
+          name: p.displayName || "Carregador",
+          formatted_address: p.formattedAddress || "Endereço indisponível",
+          geometry: {
+            location: new window.google.maps.LatLng(loc.lat(), loc.lng()),
+          },
+        };
+      }).filter(Boolean);
+
       setChargers(normalized);
   
     } catch (err) {
@@ -87,7 +93,7 @@ export default function Map() {
     }
   };
 
-  // Atualiza carregadores assim que o mapa estiver carregado
+  
   useEffect(() => {
     if (mapsLoaded && mapRef.current) {
       fetchChargers();
@@ -115,13 +121,13 @@ export default function Map() {
               setMapsLoaded(true);
             }}
           >
-            {/* Marker do usuário só se userIcon existir */}
+            
             {userLocation && userIcon && <Marker position={userLocation} icon={userIcon} />}
 
-            {/* Markers de carregadores */}
+           
             {chargers.map((place, idx) => (
             <ChargerMarker
-              key={place.place_id || idx} // fallback para índice se place_id não existir
+              key={place.place_id || idx} 
               place={place}
               map={mapRef.current}
               userLocation={userLocation}
