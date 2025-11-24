@@ -79,7 +79,7 @@ export default function Map({ setCardsForUI }) {
           name: p.displayName || "Carregador",
           formatted_address: p.formattedAddress || "Endereço indisponível",
           geometry: { location: new window.google.maps.LatLng(loc.lat(), loc.lng()) },
-          image, // <- adicionamos aqui
+          image, 
         };
       }).filter(Boolean);
 

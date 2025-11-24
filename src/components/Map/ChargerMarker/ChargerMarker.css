@@ -1,21 +1,47 @@
-.custom-infowindow {
+.chargermarker__infowindow {
   background-color: #ffffff;
-  padding: 12px 16px;
+  padding: 0 5px 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-family: 'Arial', sans-serif;
+  font-family: 'Outfit', sans-serif;
   color: #333333;
   max-width: 220px;
 }
 
-.custom-infowindow h3 {
+.chargermarker__infowindow h3 {
   margin: 0 0 6px 0;
   font-size: 16px;
   font-weight: bold;
   color: #0077ff;
 }
 
-.custom-infowindow p {
+.chargermarker__infowindow p {
   margin: 2px 0;
   font-size: 14px;
+}
+
+.charger-marker {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 35%;
+  border: 3px solid #0077ff;
+  background: #fff;
+  box-shadow: 0 4px 12px rgb(0 92 255);
+  cursor: pointer;
+  overflow: hidden;
+  padding-left: 5px;
+}
+
+.chargermarker__icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  pointer-events: none;
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
