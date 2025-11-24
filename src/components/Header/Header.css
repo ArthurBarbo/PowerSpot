@@ -1,5 +1,10 @@
 .header__container {
-    max-width: 1280px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;          /* ocupa toda a largura da viewport */
+    max-width: 1280px;    /* limite de tamanho como antes */
     display: flex;
     align-items: center;
     gap: 40px;
@@ -7,8 +12,9 @@
     background-color: #f8f9fa;
     box-shadow: 0 6px 8px rgba(127, 192, 255, 1);
     border-radius: 20px;
-    height: 120px;
+    height: 120px;        /* mantém a altura original */
     justify-content: center;
+    z-index: 1000;
 }
 .header__hamburger{display:none}
 
