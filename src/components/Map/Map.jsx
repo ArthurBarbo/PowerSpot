@@ -1,6 +1,6 @@
 import "./Map.css";
 import React, { useEffect, useRef, useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, LoadScriptNext } from "@react-google-maps/api";
 import ChargerMarker from "./ChargerMarker/ChargerMarker";
 
 import EletricStation1 from "/charging-station-1.svg";
@@ -130,7 +130,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
     <div className="map__container">
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
-        <LoadScript
+        <LoadScriptNext
           googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}
           libraries={LIBRARIES}
           onLoad={() => setMapsLoaded(true)}
@@ -147,7 +147,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
               <ChargerMarker key={place.place_id || idx} place={place} map={mapRef.current} userLocation={userLocation} activePlaceId={activePlaceId} />
             ))}
           </GoogleMap>
-        </LoadScript>
+        </LoadScriptNext>
 
         <button className="map__btn" onClick={fetchChargers}>
           <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />

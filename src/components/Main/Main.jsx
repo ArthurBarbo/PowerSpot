@@ -31,7 +31,7 @@ export default function Main({  reloadTrigger }) {
       </div>
 
       
-      <Map key={reloadTrigger} setCardsForUI={setCards} reloadTrigger={reloadTrigger} />
+      <Map setCardsForUI={setCards} reloadTrigger={reloadTrigger} />
 
       <Articles />
     </main>
