@@ -20,6 +20,10 @@ export default function App() {
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
 
 
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, [location.pathname]);
+
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => setLoading(false), 300); 

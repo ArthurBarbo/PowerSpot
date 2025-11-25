@@ -49,6 +49,15 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
     mapId: import.meta.env.VITE_MAPS_ID,
   };
 
+  const centerUserLocation = () => {
+    if (mapRef.current && userLocation) {
+      mapRef.current.panTo(userLocation);  
+      mapRef.current.setZoom(16);          
+    } else {
+      alert("Localização do usuário não disponível");
+    }
+  };
+
   const userIcon = mapsLoaded && window.google?.maps ? {
     path: window.google.maps.SymbolPath.CIRCLE,
     scale: 10,
@@ -153,6 +162,12 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
           <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
           <span className="map__btn-text">Atualizar</span>
         </button>
+        <button
+            className="map__btn-user"
+            onClick={centerUserLocation}
+          >
+            📍
+          </button>
       </div>
     </div>
   );
