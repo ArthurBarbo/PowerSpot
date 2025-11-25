@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-export default function Header({openLogin}) {
+export default function Header({openLogin, onHomeClick}) {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
-    const showSobreNos = location.pathname ==="/";
 
 return(
     <header className="header__container">  
@@ -21,21 +20,19 @@ return(
         </div>
         <nav className={`header__menuContainer ${menuOpen? "open" : ""}`}>
         <Link className="header__link" to="/">
-        <h2 className="header__text header__menu">Início</h2>
+        <h2 className="header__text header__menu" 
+            onClick={() => {
+            onHomeClick?.();
+            setMenuOpen(false);
+            }}>Início</h2>
         </Link>
 
         <Link className="header__link" to="/contacts">
         <h2 className="header__text header__menu">Contato</h2>
         </Link>
-        {showSobreNos &&(
-        <h2 className="header__text header__menu"
-    onClick={() => {
-    const section = document.getElementById("sobre-nos");
-    section?.scrollIntoView({ behavior: "smooth" });
-  }}>
-    Sobre Nós
-    </h2>
-        )}
+        <Link className="header__link" to="/about">
+        <h2 className="header__text header__menu">Sobre Nós</h2>
+        </Link>
         <h2 className="header__text header__menu" onClick={openLogin}>Acesse suas preferências</h2>
         </nav>
     </header>

@@ -1,5 +1,5 @@
 .contacts {
-    margin: 40px 0 40px 0;
+    margin: 140px 0 40px 0;
     display: flex;
     justify-content: center;
     padding: 60px 20px;
@@ -7,6 +7,16 @@
     background-color: #f5f7fa;
   background-image: radial-gradient(#6FB8FF 0.7px, transparent 1px);
   background-size: 20px 20px;
+}
+.contacts__subtitle {
+  font-size: 17px;
+  color: #333;
+  background-color: #f3f3f3;
+  padding: 12px 15px;
+  border-left: 4px solid #0077ff;
+  border-radius: 4px;
+  line-height: 24px;
+  margin-bottom: 25px;
 }
   .contacts__container {
     max-width: 600px;
@@ -123,6 +133,19 @@
     opacity: 0;
     animation: fadeInOut 2s forwards;
     font-weight: 400;
+}
+.contacts__extra {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 
+    max-height 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.contacts__extra.show {
+  max-height: 200px; /* altura suficiente para o input */
+  opacity: 1;
 }
   
   

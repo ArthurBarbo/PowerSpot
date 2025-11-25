@@ -8,7 +8,9 @@ export default function Contacts() {
 const [formValues,setFormValues] = useState({
   name:"",
   email:"",
-  message: ""
+  message: "",
+  contactType: "",
+  location: ""
 });
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -41,10 +43,50 @@ function handleSubmit(e) {
         {sucessMessage &&(
           <div className="contacts__success">{sucessMessage} </div>
         )}
-        <h2 className="contacts__title">Contato</h2>
+        <h2 className="contacts__title">Fale Conosco</h2>
+        <p className="contacts__subtitle">
+        É responsável por um ponto de energia que não aparece no nosso mapa?
+        Ou deseja apenas enviar uma mensagem, dúvida ou sugestão?
+        Preencha o formulário abaixo e retornaremos o mais rápido possível.
+        </p>
 
         <form className="contacts__form" name="contacts-form" onSubmit={handleSubmit}>
+              <div className="contacts__item">
+        <label className="contacts__label" htmlFor="contactType">Tipo de contato</label>
+        <select
+          className="contacts__input"
+          id="contactType"
+          name="contactType"
+          required
+          value={formValues.contactType}
+          onChange={handleChange}
+        >
+          <option value="">Selecione uma opção</option>
+          <option value="ponto">Cadastrar ponto de energia</option>
+          <option value="mensagem">Mensagem geral</option>
+          <option value="erro">Reportar erro no mapa</option>
+        </select>
+        </div>
 
+        {formValues.contactType === "ponto" && (
+        <div className={`contacts__extra ${formValues.contactType === "ponto" ? "show" : ""}`}>
+        <div className="contacts__item">
+          <label className="contacts__label" htmlFor="location">
+            Nome ou Localização do ponto de energia
+          </label>
+          <input
+            className="contacts__input"
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Ex: Estação Central, Posto Solar X..."
+            required
+            value={formValues.location}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+)}
           <div className="contacts__item">
             <label className="contacts__label" htmlFor="name">Nome</label>
             <input

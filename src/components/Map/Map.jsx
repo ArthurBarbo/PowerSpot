@@ -18,7 +18,7 @@ const images = [
 const containerStyle = { width: "100%", height: "700px" };
 const LIBRARIES = ["places", "marker", "geometry"];
 
-export default function Map({ setCardsForUI }) { 
+export default function Map({ setCardsForUI, reloadTrigger }) { 
   const mapRef = useRef(null);
   const [userLocation, setUserLocation] = useState(null);
   const [chargers, setChargers] = useState([]);
@@ -35,6 +35,12 @@ export default function Map({ setCardsForUI }) {
       );
     } else setUserLocation(defaultLocation);
   }, []);
+
+  useEffect(() => {
+    if (mapsLoaded && mapRef.current) {
+      fetchChargers();
+    }
+  }, [mapsLoaded, reloadTrigger]);
 
   const mapOptions = {
     mapTypeControl: false,
@@ -71,7 +77,7 @@ export default function Map({ setCardsForUI }) {
         const loc = p.location;
         if (!loc?.lat || !loc?.lng) return null;
 
-        // imagem aleatória
+      
         const image = images[Math.floor(Math.random() * images.length)];
 
         return {
@@ -98,7 +104,7 @@ export default function Map({ setCardsForUI }) {
           return distA - distB;
         });
       
-        const top4 = sorted.slice(0, 4); // <- pegar apenas os 4 mais próximos
+        const top4 = sorted.slice(0, 4); 
       
         const cards = top4.map(c => ({
           id: c.place_id,
@@ -116,7 +122,7 @@ export default function Map({ setCardsForUI }) {
     }
   };
 
-  useEffect(() => { if (mapsLoaded && mapRef.current) fetchChargers(); }, [mapsLoaded]);
+  // useEffect(() => { if (mapsLoaded && mapRef.current) fetchChargers(); }, [mapsLoaded]);
 
   if (!userLocation) return <p>Obtendo sua localização...</p>;
 

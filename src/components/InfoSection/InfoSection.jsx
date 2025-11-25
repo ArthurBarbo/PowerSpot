@@ -4,6 +4,7 @@ import "./InfoSection.css"
 export default function InfoSection() {
     return (
       <>
+      <div className="infoSection">
       <h2 className="infoSection__title" id="sobre-nos">Sobre nós</h2>
         <section className="infoSection__container">
           <h2 className="infoSection__title-content">
@@ -55,6 +56,8 @@ export default function InfoSection() {
             O site continua evoluindo como uma plataforma real, com foco em qualidade, usabilidade e inovação.
   </p>      
         </section>
+        </div>
       </>
+      
     );
   }

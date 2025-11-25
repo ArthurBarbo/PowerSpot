@@ -1,11 +1,10 @@
 import Map from "../Map/Map";
 import Card from "../Card/Card";
 import Articles from "../Articles/Articles";
-import InfoSection from "../InfoSection/InfoSection";
 import "./Main.css";
 import { useState, useRef } from "react";
 
-export default function Main() {
+export default function Main({  reloadTrigger }) {
   const [cards, setCards] = useState([]);
   
   const mapRef= useRef(null);
@@ -32,10 +31,9 @@ export default function Main() {
       </div>
 
       
-      <Map setCardsForUI={setCards} />
+      <Map key={reloadTrigger} setCardsForUI={setCards} reloadTrigger={reloadTrigger} />
 
       <Articles />
-      <InfoSection />
     </main>
   );
 }

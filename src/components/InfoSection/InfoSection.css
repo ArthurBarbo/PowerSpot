@@ -6,6 +6,8 @@
 .bold:hover {
   color: #0099ff; 
 }
+
+.infoSection {margin: 225px 0 0 0;}
 .infoSection__title{
     font-weight: 600;
     font-size: 36px;
