@@ -1,10 +1,10 @@
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 
 export default function Register() {
   const [successMessage, setSuccessMessage] = useState("");
-  const [formValues, setFormValues] = useState({ name: "", password: "", email:"" });
+  const [formValues, setFormValues] = useState({ name: "", password: "", email: "" });
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const navigate = useNavigate();
 
@@ -14,11 +14,11 @@ export default function Register() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   }
 
-  
+
   useEffect(() => {
-    const isValid = formValues.name.trim() !== "" && 
-    formValues.password.trim() !== ""&&
-    formValues.email.trim() !== "";
+    const isValid = formValues.name.trim() !== "" &&
+      formValues.password.trim() !== "" &&
+      formValues.email.trim() !== "";
     setIsButtonDisabled(!isValid);
   }, [formValues]);
 
@@ -29,8 +29,8 @@ export default function Register() {
 
 
     setTimeout(() => {
-      setSuccessMessage(""); 
-      navigate("/"); 
+      setSuccessMessage("");
+      navigate("/");
     }, 3000);
   }
 
@@ -40,7 +40,7 @@ export default function Register() {
       {successMessage && (
         <div className="register__success">
           {successMessage}
-          </div>
+        </div>
       )}
       <div className="register__container">
         <h2 className="register__title">Seja um membro <span className="register__bold">Power!</span></h2>
@@ -92,7 +92,7 @@ export default function Register() {
 
 
           <button className="register__button" type="submit" disabled={isButtonDisabled}>
-           Tornar-se Membro
+            Tornar-se Membro
           </button>
         </form>
       </div>

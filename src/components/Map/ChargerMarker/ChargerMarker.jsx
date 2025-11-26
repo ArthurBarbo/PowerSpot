@@ -17,7 +17,7 @@ export default function ChargerMarker({ place, map, userLocation, activePlaceId 
     icon.style.objectFit = "contain";
     icon.style.pointerEvents = "none";
 
-markerElement.appendChild(icon);
+    markerElement.appendChild(icon);
 
     const marker = new window.google.maps.marker.AdvancedMarkerElement({
       map,
@@ -29,29 +29,29 @@ markerElement.appendChild(icon);
 
     const infoWindow = new window.google.maps.InfoWindow();
 
-    
+
     const distance =
       window.google.maps.geometry.spherical.computeDistanceBetween(
         place.geometry.location,
         new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
       );
 
-      
 
-      const content = `
+
+    const content = `
       <div class="chargermarker__infowindow">
         <h3 class="infowindow__title">${place.name || "Estação de carga"}</h3>
         <p class="infowindow__distance">Distância: ${(distance / 1000).toFixed(2)} km</p>
         <p class="infowindow__address">Endereço: ${place.formatted_address || "N/A"}</p>
       </div>
     `;
-   
+
     marker.addListener("click", () => {
       infoWindow.setContent(content);
       infoWindow.open(map, marker);
     });
 
-    
+
     if (activePlaceId === place.place_id) {
       infoWindow.setContent(content);
       infoWindow.open(map, marker);

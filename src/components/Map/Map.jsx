@@ -2,14 +2,10 @@ import "./Map.css";
 import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker, LoadScriptNext } from "@react-google-maps/api";
 import ChargerMarker from "./ChargerMarker/ChargerMarker";
-
-
-  
-
 const containerStyle = { width: "100%", height: "700px" };
 const LIBRARIES = ["places", "marker", "geometry"];
 
-export default function Map({ setCardsForUI, reloadTrigger }) { 
+export default function Map({ setCardsForUI, reloadTrigger }) {
   const mapRef = useRef(null);
   const [userLocation, setUserLocation] = useState(null);
   const [chargers, setChargers] = useState([]);
@@ -42,8 +38,8 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
 
   const centerUserLocation = () => {
     if (mapRef.current && userLocation) {
-      mapRef.current.panTo(userLocation);  
-      mapRef.current.setZoom(16);          
+      mapRef.current.panTo(userLocation);
+      mapRef.current.setZoom(16);
     } else {
       alert("Localização do usuário não disponível");
     }
@@ -77,7 +73,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
         const loc = p.location;
         if (!loc?.lat || !loc?.lng) return null;
 
-      
+
         const image = "charging-station-1.svg"
 
         return {
@@ -85,7 +81,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
           name: p.displayName || "Carregador",
           formatted_address: p.formattedAddress || "Endereço indisponível",
           geometry: { location: new window.google.maps.LatLng(loc.lat(), loc.lng()) },
-          image, 
+          image,
         };
       }).filter(Boolean);
 
@@ -103,17 +99,17 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
           );
           return distA - distB;
         });
-      
-        const top4 = sorted.slice(0, 4); 
-      
+
+        const top4 = sorted.slice(0, 4);
+
         const cards = top4.map(c => {
           if (!userLocation) return null;
-        
+
           const distMeters = window.google.maps.geometry.spherical.computeDistanceBetween(
             c.geometry.location,
             new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
           );
-        
+
           return {
             id: c.place_id,
             title: c.name,
@@ -163,11 +159,11 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
           <span className="map__btn-text">Atualizar</span>
         </button>
         <button
-            className="map__btn-user"
-            onClick={centerUserLocation}
-          >
-            📍
-          </button>
+          className="map__btn-user"
+          onClick={centerUserLocation}
+        >
+          📍
+        </button>
       </div>
     </div>
   );

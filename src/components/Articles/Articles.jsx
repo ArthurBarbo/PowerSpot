@@ -17,14 +17,14 @@ export default function Articles() {
 
 
         <iframe className="articles__video"
-         src="https://www.youtube.com/embed/-HDB4IDKDiE?si=QzKDY5lN9wSJTk2C" 
-         title="Posso ligar o carro elétrico em qualquer tomada?" 
-         frameBorder="0" 
-         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-         referrerPolicy="strict-origin-when-cross-origin"
+          src="https://www.youtube.com/embed/-HDB4IDKDiE?si=QzKDY5lN9wSJTk2C"
+          title="Posso ligar o carro elétrico em qualquer tomada?"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen>
 
-          </iframe>
+        </iframe>
       </div>
     </section>
   );

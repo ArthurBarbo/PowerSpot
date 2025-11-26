@@ -10,22 +10,22 @@ export default function Popup({ isOpen, onClose, children }) {
         }
         if (isOpen) {
             document.addEventListener('keydown', handleEscape);
-         return () => document.removeEventListener('keydown', handleEscape);
+            return () => document.removeEventListener('keydown', handleEscape);
         }
-     }, [isOpen, onClose]);
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
     return (
         <div className="popup">
-        <div className="popup__overlay" onClick={onClose}>
-            <div className="popup__content" onClick={(e) => e.stopPropagation()}>
-                <button className="popup__close" onClick={onClose}>
-                    &times;
-                </button>
-                {children}
+            <div className="popup__overlay" onClick={onClose}>
+                <div className="popup__content" onClick={(e) => e.stopPropagation()}>
+                    <button className="popup__close" onClick={onClose}>
+                        &times;
+                    </button>
+                    {children}
+                </div>
             </div>
         </div>
-    </div>
     );
-        }
+}

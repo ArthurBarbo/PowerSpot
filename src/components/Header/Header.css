@@ -3,8 +3,10 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;          /* ocupa toda a largura da viewport */
-    max-width: 1280px;    /* limite de tamanho como antes */
+    width: 100%;
+
+    max-width: 1280px;
+
     display: flex;
     align-items: center;
     gap: 40px;
@@ -12,18 +14,23 @@
     background-color: #f8f9fa;
     box-shadow: 0 6px 8px rgba(127, 192, 255, 1);
     border-radius: 20px;
-    height: 120px;        /* mantém a altura original */
+    height: 120px;
+
     justify-content: center;
     z-index: 1000;
 }
-.header__hamburger{display:none}
+
+.header__hamburger {
+    display: none
+}
 
 .header__logo {
     height: 70px;
     width: auto;
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
 }
+
 .header__text {
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
@@ -31,7 +38,7 @@
     color: #000000;
     margin: 0 15px;
     cursor: pointer;
-    
+
 }
 
 .header__menu {
@@ -41,40 +48,42 @@
     color: #000000;
     margin: 0 15px;
     cursor: pointer;
-    position: relative; 
+    position: relative;
     transition: color 0.3s ease;
     text-decoration: none !important;
-    
+
 }
+
 .header__link {
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
-  }
+}
 
 .header__menu::after {
     content: '';
     position: absolute;
-    left: 50%;          
+    left: 50%;
     bottom: 0;
-    width: 0%;           
+    width: 0%;
     height: 2px;
     background-color: #1F6FBA;
     transform: translateX(-50%);
-    transition: width 0.3s ease; 
+    transition: width 0.3s ease;
 }
 
 .header__menu:hover {
     color: #1F6FBA;
 }
+
 .header__menuContainer {
-    display:flex;
-    transition:none;
-    
+    display: flex;
+    transition: none;
+
 
 }
 
 .header__menu:hover::after {
-    width: 100%; 
+    width: 100%;
 }
 
 .header__menu,
@@ -82,25 +91,25 @@
 .header__menu:visited,
 .header__menu:hover,
 .header__menu:active {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 
 
 @media (max-width: 1064px) {
     .header__container {
         justify-content: center;
-        gap: 20px;            
+        gap: 20px;
         padding: 15px;
     }
 
     .header__logo {
         max-height: 237px;
-        margin-right:40px;  
+        margin-right: 40px;
     }
 
     .header__text,
     .header__menu {
-        font-size: 17px;     
+        font-size: 17px;
     }
 }
 
@@ -110,19 +119,20 @@
 
     .header__container {
         justify-content: center;
-        gap: 10px;   
+        gap: 10px;
         padding: 15px;
     }
+
     .header__logo {
         height: 40px;
-        
+
     }
 }
 
 
 @media (max-width: 650px) {
     @media (max-width: 650px) {
-        
+
         .header__container {
             flex-direction: column;
             align-items: center;
@@ -131,29 +141,30 @@
             height: auto;
             overflow: hidden;
         }
-    
-        
+
+
         .header__logo {
             padding-top: 5px;
             height: 40px;
-            margin:0 auto 5px auto
+            margin: 0 auto 5px auto
         }
-    
-       
+
+
         .header__hamburger {
             display: block;
             font-size: 40px;
             cursor: pointer;
             text-align: center;
             margin-bottom: 5px;
-           
+
         }
-        .header__list{
+
+        .header__list {
             height: 35px;
             width: 35px;
         }
-    
-        
+
+
         .header__menuContainer {
             display: flex;
             flex-direction: column;
@@ -166,20 +177,20 @@
             transform: translateY(-10px);
             gap: 15px;
             padding: 0;
-}
-        }
-    
-       
-        .header__menuContainer.open {
-            max-height: 500px;
-            opacity: 1;
-            transform: translateY(0);
-            padding: 10px 0;
-        }
-    
-        .header__menu {
-            font-size: 20px;
-            text-align: center;
-            margin: 5px 0;
         }
     }
+
+
+    .header__menuContainer.open {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
+        padding: 10px 0;
+    }
+
+    .header__menu {
+        font-size: 20px;
+        text-align: center;
+        margin: 5px 0;
+    }
+}

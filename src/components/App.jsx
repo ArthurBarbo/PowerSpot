@@ -20,36 +20,36 @@ export default function App() {
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
 
 
-useEffect(() => {
-  window.scrollTo(0, 0);
-}, [location.pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 300); 
+    const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
     <>
       <div className="page">
-      {loading && <Loading />}
-        <Header onHomeClick={() => setReloadMapTrigger(prev => prev + 1)} 
-        openLogin={() => setIsPopupOpen(true)} />
+        {loading && <Loading />}
+        <Header onHomeClick={() => setReloadMapTrigger(prev => prev + 1)}
+          openLogin={() => setIsPopupOpen(true)} />
 
-       
-      <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Main reloadTrigger={reloadMapTrigger}  />} />
+
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Main reloadTrigger={reloadMapTrigger} />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/about" element={<InfoSection/>}/>
+          <Route path="/about" element={<InfoSection />} />
         </Routes>
 
-        </div>
-        <Footer />
-     
+      </div>
+      <Footer />
 
-     
+
+
       <PopupLogin
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}

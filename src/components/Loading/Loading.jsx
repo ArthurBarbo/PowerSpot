@@ -2,9 +2,9 @@ import "./Loading.css"
 
 
 export default function Loading() {
-    return(
+  return (
     <div className="loading-overlay">
-        <div className="loading-spinner"></div>
-      </div>
-    );
-  }
+      <div className="loading-spinner"></div>
+    </div>
+  );
+}
