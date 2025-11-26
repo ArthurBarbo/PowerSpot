@@ -1,6 +1,8 @@
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
+import { registerUser } from "../Api/auth.js"
+
 
 export default function Register() {
   const [successMessage, setSuccessMessage] = useState("");
@@ -23,15 +25,18 @@ export default function Register() {
   }, [formValues]);
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSuccessMessage("Conta criada com sucesso!");
-
-
-    setTimeout(() => {
-      setSuccessMessage("");
-      navigate("/");
-    }, 3000);
+    try {
+      const response = await registerUser(formValues);
+      setSuccessMessage("Conta criada com sucesso!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        navigate("/");
+      }, 3000);
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
 
