@@ -11,8 +11,8 @@ flex-grow: 1;}
   
 }
 .card__image {
-    width: 80px;
-    height: 80px;
+    width: 44px;
+    height: 77px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
     margin-bottom: 30px;

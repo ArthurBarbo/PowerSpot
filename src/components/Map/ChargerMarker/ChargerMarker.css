@@ -27,9 +27,19 @@
   justify-content: center;
   border-radius: 35%;
   cursor: pointer;
-  overflow: hidden;
-  padding-left: 5px;
+  overflow: visible; 
+  transition: filter 0.2s ease, transform 0.2s ease;
 }
+
+.charger-marker:hover {
+ 
+  filter: 
+    drop-shadow(0 0 6px #1e90ff)  
+    drop-shadow(0 0 10px #00ffff) 
+    drop-shadow(0 0 15px #00f5ff); 
+  transform: scale(1.2);
+}
+
 
 .chargermarker__icon img {
   width: 100% !important;

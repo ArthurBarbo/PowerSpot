@@ -3,17 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker, LoadScriptNext } from "@react-google-maps/api";
 import ChargerMarker from "./ChargerMarker/ChargerMarker";
 
-import EletricStation1 from "/charging-station-1.svg";
-import EletricStation2 from "/charging-station-2.svg";
-import EletricStation3 from "/charging-station-3.svg";
-import EletricStation4 from "/charging-station-4.svg";
-import EletricStation5 from "/charging-station-5.svg";
-import EletricStation6 from "/charging-station-6.svg";
 
-const images = [
-  EletricStation1, EletricStation2, EletricStation3,
-  EletricStation4, EletricStation5, EletricStation6
-];
+  
 
 const containerStyle = { width: "100%", height: "700px" };
 const LIBRARIES = ["places", "marker", "geometry"];
@@ -87,7 +78,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
         if (!loc?.lat || !loc?.lng) return null;
 
       
-        const image = images[Math.floor(Math.random() * images.length)];
+        const image = "charging-station-1.svg"
 
         return {
           place_id: p.id || idx,
@@ -115,12 +106,22 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
       
         const top4 = sorted.slice(0, 4); 
       
-        const cards = top4.map(c => ({
-          id: c.place_id,
-          title: c.name,
-          description: c.formatted_address,
-          image: c.image,
-        }));
+        const cards = top4.map(c => {
+          if (!userLocation) return null;
+        
+          const distMeters = window.google.maps.geometry.spherical.computeDistanceBetween(
+            c.geometry.location,
+            new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
+          );
+        
+          return {
+            id: c.place_id,
+            title: c.name,
+            description: c.formatted_address,
+            image: c.image,
+            distance: distMeters / 1000, // passar como número puro, sem toFixed
+          };
+        }).filter(Boolean);
         setCardsForUI(cards);
       }
 
@@ -131,7 +132,6 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
     }
   };
 
-  // useEffect(() => { if (mapsLoaded && mapRef.current) fetchChargers(); }, [mapsLoaded]);
 
   if (!userLocation) return <p>Obtendo sua localização...</p>;
 
