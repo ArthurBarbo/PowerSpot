@@ -1,4 +1,4 @@
-🟦 PowerSpot — Front-End
+## 🟦 PowerSpot — Front-End
 
 Front-end desenvolvido em React, responsável por toda a interface do usuário, exibição de pontos de energia (PowerSpots), autenticação via JWT e integração com Google Maps (API JavaScript nativa).
 
@@ -24,12 +24,12 @@ Variáveis de Ambiente
 
 Scripts Disponíveis
 
-🚀 Sobre o Projeto
+## 🚀 Sobre o Projeto
 
 O PowerSpot é uma aplicação web que permite visualizar pontos de energia distribuídos pelo mapa, acessar detalhes, criar conta, fazer login e interagir com o sistema.
 Este repositório contém apenas o Front-end, construído com foco em modularidade, reusabilidade e organização.
 
-🧰 Tecnologias
+## 🧰 Tecnologias
 
 React + Vite
 
@@ -107,7 +107,7 @@ src/
 
 ```
 
-🗺️ Google Maps
+## 🗺️ Google Maps
 
 Funcionalidades:
 
@@ -135,7 +135,7 @@ icon: "/marker.svg"
 });
 }, []);
 
-🔧 Variáveis de Ambiente
+## 🔧 Variáveis de Ambiente
 
 Crie um arquivo .env na raiz contendo:
 
