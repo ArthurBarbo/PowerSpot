@@ -4,7 +4,7 @@ import "./PopupLogin.css";
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../Api/auth';
 
-export default function PopupLogin({ isOpen, onClose }) {
+export default function PopupLogin({ isOpen, onClose, onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -48,6 +48,8 @@ export default function PopupLogin({ isOpen, onClose }) {
 
       setError('');
       onClose();
+
+      onLoginSuccess?.(data);
 
     } catch (err) {
       console.error(err);

@@ -94,6 +94,36 @@
     text-decoration: none !important;
 }
 
+.header__hello {
+    display: block;
+
+    font-weight: 400;
+
+}
+
+.header__bold {
+    display: block;
+
+    font-weight: 700;
+    color: #007BFF;
+}
+
+.header__user {
+    display: flex;
+    align-items: center;
+
+}
+
+.header__info {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 8px;
+
+    border-left: 4px solid #007BFF;
+
+}
+
 
 @media (max-width: 1064px) {
     .header__container {

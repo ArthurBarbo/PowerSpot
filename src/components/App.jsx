@@ -18,6 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
+  const [user, setUser] = useState(null);
 
 
   useEffect(() => {
@@ -29,13 +30,14 @@ export default function App() {
     const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, [location.pathname]);
-
+  console.log("App user:", user);
   return (
     <>
       <div className="page">
         {loading && <Loading />}
         <Header onHomeClick={() => setReloadMapTrigger(prev => prev + 1)}
-          openLogin={() => setIsPopupOpen(true)} />
+          openLogin={() => setIsPopupOpen(true)}
+          user={user} />
 
 
         <Routes location={location} key={location.pathname}>
@@ -53,6 +55,7 @@ export default function App() {
       <PopupLogin
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
+        onLoginSuccess={(userData) => setUser(userData)}
       />
     </>
   );

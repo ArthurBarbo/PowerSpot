@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-export default function Header({ openLogin, onHomeClick }) {
+export default function Header({ openLogin, onHomeClick, user }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
@@ -30,11 +30,26 @@ export default function Header({ openLogin, onHomeClick }) {
                 <Link className="header__link" to="/contacts">
                     <h2 className="header__text header__menu">Contato</h2>
                 </Link>
+
+
                 <Link className="header__link" to="/about">
                     <h2 className="header__text header__menu">Sobre Nós</h2>
                 </Link>
-                <h2 className="header__text header__menu" onClick={openLogin}>Acesse suas preferências</h2>
+
+
+                {user ? (
+                    <h2 className="header__text header__menu header__user">
+                        <div className="header__info">
+                            <span className="header__hello">Olá,</span>
+                            <span className="header__bold">{user.name}</span>
+                        </div>
+                    </h2>
+                ) : (
+                    <h2 className="header__text header__menu" onClick={openLogin}>
+                        Acesse suas preferências
+                    </h2>
+                )}
             </nav>
-        </header>
-    )
+        </header >
+    );
 }
