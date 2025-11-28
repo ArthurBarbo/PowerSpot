@@ -1,4 +1,6 @@
+
 import "./Map.css";
+import { env } from "../../env/index";
 import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker, LoadScriptNext } from "@react-google-maps/api";
 import ChargerMarker from "./ChargerMarker/ChargerMarker";
@@ -7,10 +9,13 @@ const LIBRARIES = ["places", "marker", "geometry"];
 
 export default function Map({ setCardsForUI, reloadTrigger }) {
   const mapRef = useRef(null);
+  const GOOGLE_MAPS_KEY = env.VITE_GOOGLE_MAPS_KEY;
+  const MAPS_ID = env.VITE_MAPS_ID
   const [userLocation, setUserLocation] = useState(null);
   const [chargers, setChargers] = useState([]);
   const [mapsLoaded, setMapsLoaded] = useState(false);
   const [activePlaceId, setActivePlaceId] = useState(null);
+
 
   const defaultLocation = { lat: 38.7169, lng: -9.1397 };
 
@@ -33,7 +38,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
-    mapId: import.meta.env.VITE_MAPS_ID,
+    mapId: MAPS_ID,
   };
 
   const centerUserLocation = () => {
@@ -136,7 +141,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
       <h2 className="map__title">Mapa de Pontos de Recarga</h2>
       <div className="map__content">
         <LoadScriptNext
-          googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}
+          googleMapsApiKey={GOOGLE_MAPS_KEY}
           libraries={LIBRARIES}
           onLoad={() => setMapsLoaded(true)}
         >

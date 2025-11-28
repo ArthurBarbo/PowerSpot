@@ -1,4 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL;
+import { env } from '../../env/index';
+const API_URL = env.VITE_API_URL;
 
 export async function registerUser({ name, email, password }) {
   try {
