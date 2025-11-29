@@ -1,4 +1,7 @@
 import { useState } from "react";
+import PowerSpot__logo from "../../images/powerspot__logo.svg"
+import Mobile_menu_close from "../../images/list_up.svg"
+import Mobile_menu_open from "../../images/list.svg"
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 export default function Header({ openLogin, onHomeClick, user }) {
@@ -8,7 +11,7 @@ export default function Header({ openLogin, onHomeClick, user }) {
     return (
         <header className="header__container">
 
-            <img src="/powerspot__logo.svg"
+            <img src={PowerSpot__logo}
                 alt="PowerSpot Logo"
                 className="header__logo"
             />
@@ -16,7 +19,7 @@ export default function Header({ openLogin, onHomeClick, user }) {
                 className="header__hamburger"
                 onClick={() => setMenuOpen(!menuOpen)}
             >
-                <img className="header__list" src={menuOpen ? "/list_up.svg" : "/list.svg"} alt="Logo para abrir o menu" />
+                <img className="header__list" src={menuOpen ? Mobile_menu_close : Mobile_menu_open} alt="Logo para abrir o menu" />
             </div>
             <nav className={`header__menuContainer ${menuOpen ? "open" : ""}`}>
                 <Link className="header__link" to="/">

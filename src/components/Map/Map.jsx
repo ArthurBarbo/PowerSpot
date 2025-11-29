@@ -1,5 +1,7 @@
 
 import "./Map.css";
+import lightning from "../../images/charging-station-1.svg";
+import reloadlogo from "../../images/Charge.png";
 import { env } from "../../env/index";
 import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker, LoadScriptNext } from "@react-google-maps/api";
@@ -79,7 +81,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
         if (!loc?.lat || !loc?.lng) return null;
 
 
-        const image = "charging-station-1.svg"
+        const image = lightning;
 
         return {
           place_id: p.id || idx,
@@ -160,7 +162,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
         </LoadScriptNext>
 
         <button className="map__btn" onClick={fetchChargers}>
-          <img src="/Charge.png" alt="Atualizar Carregadores" className="map__icon" />
+          <img src={reloadlogo} alt="Atualizar Carregadores" className="map__icon" />
           <span className="map__btn-text">Atualizar</span>
         </button>
         <button

@@ -45,10 +45,11 @@ export default function App() {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<InfoSection />} />
-        </Routes>
 
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </div>
-      <Footer />
 
 
 
