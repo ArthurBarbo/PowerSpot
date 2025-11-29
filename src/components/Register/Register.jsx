@@ -16,7 +16,6 @@ export default function Register() {
   function handleChange(e) {
     const { name, value } = e.target;
 
-    // sanitização básica + email sempre minúsculo
     const sanitizedValue =
       name === "email"
         ? value.trim().toLowerCase()
@@ -28,7 +27,6 @@ export default function Register() {
     }));
   }
 
-  // validação recomendada pelo revisor: simples e direta
   const isValid =
     formValues.name !== "" &&
     formValues.password !== "" &&
