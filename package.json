@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite --open"
+    "dev": "vite --open",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -17,13 +20,14 @@
   "bugs": {
     "url": "https://github.com/ArthurBarbo/PowerSpot/issues"
   },
-  "homepage": "https://github.com/ArthurBarbo/PowerSpot#readme",
+  "homepage": "https://ArthurBarbo.github.io/PowerSpot",
   "dependencies": {
     "@react-google-maps/api": "^2.20.7",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.0",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.6.2",
     "vite": "^7.2.1"
   }
