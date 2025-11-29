@@ -1,35 +1,47 @@
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react"
-import { registerUser } from "../Api/auth.js"
-
+import { useState } from "react";
+import { registerUser } from "../Api/auth.js";
 
 export default function Register() {
   const [successMessage, setSuccessMessage] = useState("");
-  const [formValues, setFormValues] = useState({ name: "", password: "", email: "" });
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    password: "",
+    email: "",
+  });
 
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
+
+    // sanitização básica + email sempre minúsculo
+    const sanitizedValue =
+      name === "email"
+        ? value.trim().toLowerCase()
+        : value.trim();
+
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: sanitizedValue,
+    }));
   }
 
-
-  useEffect(() => {
-    const isValid = formValues.name.trim() !== "" &&
-      formValues.password.trim() !== "" &&
-      formValues.email.trim() !== "";
-    setIsButtonDisabled(!isValid);
-  }, [formValues]);
-
+  // validação recomendada pelo revisor: simples e direta
+  const isValid =
+    formValues.name !== "" &&
+    formValues.password !== "" &&
+    formValues.email !== "";
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     try {
-      const response = await registerUser(formValues);
+      await registerUser(formValues);
+
       setSuccessMessage("Conta criada com sucesso!");
+
       setTimeout(() => {
         setSuccessMessage("");
         navigate("/");
@@ -39,21 +51,26 @@ export default function Register() {
     }
   }
 
-
   return (
     <div className="register">
       {successMessage && (
-        <div className="register__success">
-          {successMessage}
-        </div>
+        <div className="register__success">{successMessage}</div>
       )}
+
       <div className="register__container">
-        <h2 className="register__title">Seja um membro <span className="register__bold">Power!</span></h2>
+        <h2 className="register__title">
+          Seja um membro <span className="register__bold">Power!</span>
+        </h2>
 
-        <form className="register__form form" onSubmit={handleSubmit} name="register-form">
-
+        <form
+          className="register__form form"
+          onSubmit={handleSubmit}
+          name="register-form"
+        >
           <div className="register__item">
-            <label className="register__label" htmlFor="name">Nome</label>
+            <label className="register__label" htmlFor="name">
+              Nome
+            </label>
             <input
               className="register__input"
               type="text"
@@ -67,7 +84,9 @@ export default function Register() {
           </div>
 
           <div className="register__item">
-            <label className="register__label" htmlFor="password">Palavra Passe</label>
+            <label className="register__label" htmlFor="password">
+              Palavra Passe
+            </label>
             <input
               className="register__input"
               type="password"
@@ -81,7 +100,9 @@ export default function Register() {
           </div>
 
           <div className="register__item">
-            <label className="register__label" htmlFor="email">Email</label>
+            <label className="register__label" htmlFor="email">
+              Email
+            </label>
             <input
               className="register__input"
               type="email"
@@ -94,9 +115,11 @@ export default function Register() {
             />
           </div>
 
-
-
-          <button className="register__button" type="submit" disabled={isButtonDisabled}>
+          <button
+            className="register__button"
+            type="submit"
+            disabled={!isValid}
+          >
             Tornar-se Membro
           </button>
         </form>
