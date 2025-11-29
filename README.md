@@ -24,10 +24,12 @@ Variáveis de Ambiente
 
 Scripts Disponíveis
 
-## 🚀 Sobre o Projeto
+🚀 Sobre o Projeto
 
 O PowerSpot é uma aplicação web que permite visualizar pontos de energia distribuídos pelo mapa, acessar detalhes, criar conta, fazer login e interagir com o sistema.
 Este repositório contém apenas o Front-end, construído com foco em modularidade, reusabilidade e organização.
+
+⚠️ Atenção: O projeto ainda está em desenvolvimento. Futuramente ele será hospedado em um site de produção, mas atualmente roda apenas localmente para testes e desenvolvimento.
 
 ## 🧰 Tecnologias
 

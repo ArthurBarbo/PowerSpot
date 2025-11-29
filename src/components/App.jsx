@@ -1,10 +1,12 @@
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+
+
 import Header from './Header/Header.jsx';
 import Main from './Main/Main.jsx';
 import Footer from './Footer/Footer.jsx';
 import Map from './Map/Map.jsx';
-import React, { useState, useEffect } from 'react';
 import PopupLogin from './Popup/PopupLogin/PopupLogin.jsx';
-import { Routes, Route, useLocation } from "react-router-dom";
 import Contacts from './Contacts/Contacts.jsx';
 import Register from './Register/Register.jsx';
 import Loading from './Loading/Loading.jsx';
@@ -46,10 +48,10 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<InfoSection />} />
 
-
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </div>
+      </div >
+      <Footer />
 
 
 
