@@ -1,20 +1,25 @@
-import { useState } from "react";
 import "./Card.css";
 import saveIcon from "../../images/unsaved.svg";
 import savedIcon from "../../images/saved.svg";
 
-export default function Card({ id, title, description, image, distance, onShowOnMap }) {
-  const [saved, setSaved] = useState(false);
-
-  const toggleSave = () => setSaved(prev => !prev);
-
+export default function Card({
+  id,
+  title,
+  description,
+  image,
+  distance,
+  onShowOnMap,
+  onToggleFavorite,
+  isFavorite
+}) {
   return (
     <div className="card">
-      {/* Ícone no topo à direita */}
-      <button className="card__save-btn" onClick={toggleSave}>
+
+      {/* Botão de salvar */}
+      <button className="card__save-btn" onClick={onToggleFavorite}>
         <img
-          src={saved ? savedIcon : saveIcon}
-          alt={saved ? "Salvo" : "Salvar"}
+          src={isFavorite ? savedIcon : saveIcon}
+          alt={isFavorite ? "Salvo" : "Salvar"}
           className="card__save-icon"
         />
       </button>
