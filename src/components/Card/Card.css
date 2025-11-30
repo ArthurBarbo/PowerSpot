@@ -29,6 +29,25 @@
   flex-direction: column;
   align-items: center;
   animation: slideIn 0.9s forwards;
+
+  position: relative;
+
+
+}
+
+.card__save-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card__description {
@@ -48,6 +67,19 @@
 .card__touched:hover {
   color: #1F6FBA;
   transition: 0.4s ease;
+}
+
+
+.card__save-icon {
+  width: 40px;
+  height: 31px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card__save-icon:hover {
+  transform: scale(1.2);
+
 }
 
 

@@ -19,6 +19,13 @@
 
 }
 
+.main__user-name {
+    font-weight: 700;
+    font-size: 28px;
+    color: #007BFF;
+
+}
+
 @media (max-width: 1054px) {
     .main__text {
         font-size: 27px;

@@ -37,3 +37,19 @@ export async function loginUser({ email, password }) {
     throw err;
   }
 }
+
+export async function getUserData(token) {
+  try {
+    const res = await fetch(`${API_URL}/users/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message || 'Token inválido');
+
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}

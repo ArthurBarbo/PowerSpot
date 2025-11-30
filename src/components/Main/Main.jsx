@@ -4,7 +4,7 @@ import Articles from "../Articles/Articles";
 import "./Main.css";
 import { useState, useRef } from "react";
 
-export default function Main({ reloadTrigger }) {
+export default function Main({ reloadTrigger, user }) {
   const [cards, setCards] = useState([]);
 
   const mapRef = useRef(null);
@@ -22,14 +22,19 @@ export default function Main({ reloadTrigger }) {
 
   return (
     <main className="main__container">
-      <h2 className="main__text">Encontre os melhores pontos de recarga próximos a você!</h2>
+      <h2 className="main__text">
+        {user
+          ? <>
+            <span className="main__user-name">{user.name}</span>, aqui estão os pontos de recarga mais próximos!
+          </>
+          : "Encontre os melhores pontos de recarga próximos a você!"}
+      </h2>
+
       <div className="main__cards">
         {cards.map((c) => (
-          <Card key={c.id} {...c}
-            onShowOnMap={handleShowOnMap} />
+          <Card key={c.id} {...c} onShowOnMap={handleShowOnMap} />
         ))}
       </div>
-
 
       <Map setCardsForUI={setCards} reloadTrigger={reloadTrigger} />
 

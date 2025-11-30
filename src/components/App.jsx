@@ -11,7 +11,7 @@ import Contacts from './Contacts/Contacts.jsx';
 import Register from './Register/Register.jsx';
 import Loading from './Loading/Loading.jsx';
 import InfoSection from './InfoSection/InfoSection.jsx';
-
+import { getUserData } from './Api/auth';
 
 
 
@@ -22,6 +22,18 @@ export default function App() {
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      getUserData(token)
+        .then(data => setUser(data))
+        .catch(err => {
+          console.error(err);
+          localStorage.removeItem('token');
+          setUser(null);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,7 +44,7 @@ export default function App() {
     const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, [location.pathname]);
-  console.log("App user:", user);
+
   return (
     <>
       <div className="page">
@@ -43,7 +55,7 @@ export default function App() {
 
 
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Main reloadTrigger={reloadMapTrigger} />} />
+          <Route path="/" element={<Main reloadTrigger={reloadMapTrigger} user={user} />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<InfoSection />} />
