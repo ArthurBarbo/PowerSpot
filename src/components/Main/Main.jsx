@@ -3,23 +3,24 @@ import Card from "../Card/Card";
 import Articles from "../Articles/Articles";
 import "./Main.css";
 import { useState, useEffect, useRef } from "react";
-// import { getFavoriteCards } from "../Api/cards"; // sua função pra buscar favoritos
+import { getFavoriteCards, saveCard } from "../Api/cards.js";
 
 export default function Main({ reloadTrigger, user }) {
   const [cards, setCards] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [viewMode, setViewMode] = useState("all"); // "all" | "fav"
+  const [viewMode, setViewMode] = useState("all");
   const mapRef = useRef(null);
 
-  // Buscar favoritos só se o usuário estiver logado
-  // useEffect(() => {
-  //   // if (user) {
-  //   //   const token = localStorage.getItem("token");
-  //   //   getFavoriteCards(token).then((favCards) => setFavorites(favCards));
-  //   // } else {
-  //   setFavorites([]); // limpar caso deslogue
-  // }
-  // }, [user]);
+
+  useEffect(() => {
+    if (user?.token) {
+      getFavoriteCards(user.token).then((favIds) => {
+        setFavorites(favIds);
+      });
+    } else {
+      setFavorites([]);
+    }
+  }, [user]);
 
   const handleShowOnMap = (id) => {
     const mapElement = document.querySelector(".map__container");
@@ -28,16 +29,21 @@ export default function Main({ reloadTrigger, user }) {
     window.dispatchEvent(new CustomEvent("showOnMap", { detail: id }));
   };
 
-  const handleToggleFavorite = (card) => {
-    if (!user) return; // segurança extra
-    setFavorites((prev) =>
-      prev.some((f) => f.id === card.id)
-        ? prev.filter((f) => f.id !== card.id)
-        : [...prev, card]
-    );
+  const handleToggleFavorite = async (cardId) => {
+    console.log("handleToggleFavorite chamado para o card:", cardId);
+    if (!user?.token) return;
+
+    try {
+      const updatedFavorites = await saveCard(cardId, user.token);
+      console.log("Resposta da API:", updatedFavorites);
+      setFavorites(updatedFavorites);
+    } catch (err) {
+      console.error("Erro ao favoritar card:", err);
+    }
   };
 
-  const cardsToRender = viewMode === "fav" ? favorites : cards;
+  const favoriteCards = cards.filter((c) => favorites.includes(c.id));
+  const cardsToRender = viewMode === "fav" ? favoriteCards : cards;
 
   return (
     <main className="main__container">
@@ -59,10 +65,9 @@ export default function Main({ reloadTrigger, user }) {
           Todos
         </button>
 
-        {/* Só exibe se estiver logado e tiver favoritos */}
         {user && favorites.length > 0 && (
           <button
-            className={`main__filter-btn ${viewMode === "fav" ? "active" : ""} ${favorites.length > 0 ? "main__filter-btn--appeared" : ""}`}
+            className={`main__filter-btn ${viewMode === "fav" ? "active" : ""} main__filter-btn--appeared`}
             onClick={() => setViewMode("fav")}
           >
             Meus carregadores
@@ -71,18 +76,21 @@ export default function Main({ reloadTrigger, user }) {
       </div>
 
       <div className={`main__cards ${viewMode === "fav" ? "main__cards--fav" : ""}`}>
-        {cardsToRender.map((c) => (
-          <Card
-            key={c.id}
-            {...c}
-            user={user} // passa user para o card controlar botão de salvar
-            onShowOnMap={() => handleShowOnMap(c.id)}
-            onToggleFavorite={() => handleToggleFavorite(c)}
-            isFavorite={favorites.some((f) => f.id === c.id)}
-          />
-        ))}
+        {cardsToRender.length > 0 ? (
+          cardsToRender.map((c) => (
+            <Card
+              key={c.id}
+              {...c}
+              user={user}
+              onShowOnMap={() => handleShowOnMap(c.id)}
+              onToggleFavorite={() => handleToggleFavorite(c.id)}
+              isFavorite={favorites.includes(c.id)}
+            />
+          ))
+        ) : viewMode === "fav" ? (
+          <p>Nenhum carregador favoritado ainda.</p>
+        ) : null}
       </div>
-
       <Map setCardsForUI={setCards} reloadTrigger={reloadTrigger} />
       <Articles />
     </main>

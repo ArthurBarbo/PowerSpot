@@ -1,19 +1,46 @@
+import { env } from '../../env/index';
+const API_URL = env.VITE_API_URL;
+console.log('cards.js carregado');
+
 export async function getFavoriteCards(token) {
-  // por enquanto retorna um array vazio ou alguns cards mock
-  return [
-    {
-      id: 1,
-      title: 'Carregador A',
-      description: 'Rápido e confiável',
-      image: '/images/charger1.jpg',
-      distance: 0.5,
-    },
-    {
-      id: 2,
-      title: 'Carregador B',
-      description: 'Local agradável',
-      image: '/images/charger2.jpg',
-      distance: 1.2,
-    },
-  ];
+  try {
+    const res = await fetch(`${API_URL}/users/favorites`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message || 'Erro ao buscar favoritos');
+
+    return data.favorites;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
+export async function saveCard(cardId, token) {
+  console.log('saveCard chamado com cardId:', cardId);
+  try {
+    const res = await fetch(`${API_URL}/users/favorites`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ cardId }),
+    });
+    console.log('Resposta fetch:', res.status, res.ok);
+    const data = await res.json();
+    console.log('Resposta fetch saveCard:', data, res.ok);
+
+    if (!res.ok) throw new Error(data.message || 'Erro ao salvar card');
+
+    return data.favorites;
+  } catch (err) {
+    console.error('Erro em saveCard:', err);
+    return [];
+  }
 }

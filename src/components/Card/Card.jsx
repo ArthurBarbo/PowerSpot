@@ -11,7 +11,7 @@ export default function Card({
   onShowOnMap,
   onToggleFavorite,
   isFavorite,
-  user, // recebe user do Main
+  user,
 }) {
   return (
     <div className="card">
@@ -31,14 +31,10 @@ export default function Card({
           }
         </p>
 
-        {/* Só exibe botão de salvar se o usuário estiver logado */}
+
         {user && (
-          <button className="card__save-btn" onClick={onToggleFavorite}>
-            <img
-              src={isFavorite ? savedIcon : saveIcon}
-              alt={isFavorite ? "Salvo" : "Salvar"}
-              className="card__save-icon"
-            />
+          <button className="card__save-btn" onClick={() => onToggleFavorite(id)}>
+            <img src={isFavorite ? savedIcon : saveIcon} alt={isFavorite ? "Salvo" : "Salvar"} className="card__save-icon" />
           </button>
         )}
 
@@ -46,6 +42,6 @@ export default function Card({
           Mostrar no Mapa
         </p>
       </div>
-    </div>
+    </div >
   );
 }
