@@ -22,6 +22,22 @@ export default function App() {
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
   const [user, setUser] = useState(null);
 
+  function handleEditName() {
+    const newName = prompt("Digite seu novo nome:");
+    if (!newName || newName.trim() === "") return;
+
+    setUser(prev => ({
+      ...prev,
+      name: newName
+    }));
+  }
+
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    setUser(null);
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -51,7 +67,9 @@ export default function App() {
         {loading && <Loading />}
         <Header onHomeClick={() => setReloadMapTrigger(prev => prev + 1)}
           openLogin={() => setIsPopupOpen(true)}
-          user={user} />
+          user={user}
+          onEditName={handleEditName}
+          onLogout={handleLogout} />
 
 
         <Routes location={location} key={location.pathname}>
