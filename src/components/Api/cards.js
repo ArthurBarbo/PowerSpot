@@ -1,7 +1,5 @@
 import { env } from '../../env/index';
 const API_URL = env.VITE_API_URL;
-console.log('cards.js carregado');
-
 export async function getFavoriteCards(token) {
   try {
     const res = await fetch(`${API_URL}/users/favorites`, {
@@ -22,7 +20,6 @@ export async function getFavoriteCards(token) {
 }
 
 export async function saveCard(cardId, token) {
-  console.log('saveCard chamado com cardId:', cardId);
   try {
     const res = await fetch(`${API_URL}/users/favorites`, {
       method: 'POST',
@@ -32,9 +29,7 @@ export async function saveCard(cardId, token) {
       },
       body: JSON.stringify({ cardId }),
     });
-    console.log('Resposta fetch:', res.status, res.ok);
     const data = await res.json();
-    console.log('Resposta fetch saveCard:', data, res.ok);
 
     if (!res.ok) throw new Error(data.message || 'Erro ao salvar card');
 

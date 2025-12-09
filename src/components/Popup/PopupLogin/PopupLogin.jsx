@@ -41,7 +41,6 @@ export default function PopupLogin({ isOpen, onClose, onLoginSuccess }) {
 
     try {
       const data = await loginUser({ email, password });
-      console.log('Login bem-sucedido:', data);
 
 
       localStorage.setItem('token', data.token);

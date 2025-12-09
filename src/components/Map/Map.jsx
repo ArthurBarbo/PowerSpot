@@ -122,7 +122,7 @@ export default function Map({ setCardsForUI, reloadTrigger }) {
             title: c.name,
             description: c.formatted_address,
             image: c.image,
-            distance: distMeters / 1000, // passar como número puro, sem toFixed
+            distance: distMeters / 1000,
           };
         }).filter(Boolean);
         setCardsForUI(cards);

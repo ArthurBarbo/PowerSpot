@@ -30,12 +30,10 @@ export default function Main({ reloadTrigger, user }) {
   };
 
   const handleToggleFavorite = async (cardId) => {
-    console.log("handleToggleFavorite chamado para o card:", cardId);
     if (!user?.token) return;
 
     try {
       const updatedFavorites = await saveCard(cardId, user.token);
-      console.log("Resposta da API:", updatedFavorites);
       setFavorites(updatedFavorites);
     } catch (err) {
       console.error("Erro ao favoritar card:", err);

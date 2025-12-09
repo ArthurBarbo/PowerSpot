@@ -53,3 +53,30 @@ export async function getUserData(token) {
     throw err;
   }
 }
+
+export async function updateUserName(token, newName) {
+  try {
+    if (!newName || typeof newName !== 'string') {
+      throw new Error('Nome inválido para envio');
+    }
+
+    const res = await fetch(`${API_URL}/users/edit-name`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name: newName }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Erro ao atualizar o nome');
+    }
+
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}

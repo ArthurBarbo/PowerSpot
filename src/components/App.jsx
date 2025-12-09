@@ -7,11 +7,12 @@ import Main from './Main/Main.jsx';
 import Footer from './Footer/Footer.jsx';
 import Map from './Map/Map.jsx';
 import PopupLogin from './Popup/PopupLogin/PopupLogin.jsx';
+import PopupName from "./Popup/PopupName/PopupName.jsx";
 import Contacts from './Contacts/Contacts.jsx';
 import Register from './Register/Register.jsx';
 import Loading from './Loading/Loading.jsx';
 import InfoSection from './InfoSection/InfoSection.jsx';
-import { getUserData } from './Api/auth';
+import { getUserData, updateUserName } from './Api/auth';
 
 
 
@@ -21,17 +22,31 @@ export default function App() {
   const location = useLocation();
   const [reloadMapTrigger, setReloadMapTrigger] = useState(0);
   const [user, setUser] = useState(null);
+  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
   function handleEditName() {
-    const newName = prompt("Digite seu novo nome:");
-    if (!newName || newName.trim() === "") return;
-
-    setUser(prev => ({
-      ...prev,
-      name: newName
-    }));
+    setIsEditPopupOpen(true);
   }
 
+  async function handleSaveName(newName) {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const data = await updateUserName(token, newName);
+
+      if (!data.user) {
+        console.error("Erro: usuário não retornado pelo backend");
+        return;
+      }
+
+      setUser(data.user);
+      setIsEditPopupOpen(false);
+    } catch (err) {
+
+      console.error("Erro ao atualizar nome:", err.message || err);
+    }
+  }
 
   function handleLogout() {
     localStorage.removeItem("token");
@@ -90,6 +105,14 @@ export default function App() {
         onClose={() => setIsPopupOpen(false)}
         onLoginSuccess={(userData) => setUser(userData)}
       />
+
+      <PopupName
+        isOpen={isEditPopupOpen}
+        onClose={() => setIsEditPopupOpen(false)}
+        onSave={handleSaveName}
+        currentName={user?.name || ""}
+      />
     </>
   );
 }
+

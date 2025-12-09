@@ -29,6 +29,7 @@
     width: auto;
     text-decoration: none;
     color: inherit;
+    padding-bottom: 10px;
 }
 
 .header__text {
@@ -191,7 +192,8 @@
 
     .header__logo {
         max-height: 237px;
-        margin-right: 40px;
+        margin: 0 25px 0 27px;
+
     }
 
     .header__text,
@@ -214,10 +216,18 @@
         height: 40px;
 
     }
+
+    .header__hello {
+        font-size: 19px;
+    }
+
+    .header__bold {
+        font-size: 20px;
+    }
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 734px) {
 
     .header__container {
         flex-direction: column;
