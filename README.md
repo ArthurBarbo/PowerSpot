@@ -52,61 +52,82 @@ Context API (estado global de autenticação)
 A estrutura segue o padrão: **cada componente possui sua própria pasta com `.jsx` + `.css`**.
 
 ```bash
-PowerSpot/
-├── node_modules/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── Api/
-│   │   │   ├── api.js
-│   │   │   └── auth.js
-│   │   ├── Articles/
-│   │   ├── Card/
-│   │   ├── Contacts/
-│   │   ├── Footer/
-│   │   │   ├── Footer.css
-│   │   │   └── Footer.jsx
-│   │   ├── Header/
-│   │   │   ├── Header.css
-│   │   │   └── Header.jsx
-│   │   ├── InfoSection/
-│   │   ├── Loading/
-│   │   ├── Main/
-│   │   │   ├── Main.css
-│   │   │   └── Main.jsx
-│   │   ├── Map/
-│   │   │   ├── ChargerMarker/
-│   │   │   │   ├── ChargerMarker.css
-│   │   │   │   └── ChargerMarker.jsx
-│   │   │   ├── Map.css
-│   │   │   └── Map.jsx
-│   │   ├── Popup/
-│   │   │   ├── PopupLogin/
-│   │   │   │   ├── PopupLogin.css
-│   │   │   │   └── PopupLogin.jsx
-│   │   │   ├── Popup.css
-│   │   │   └── Popup.jsx
-│   │   └── Register/
-│   ├── env/
-│   ├── images/
-│   ├── App.jsx
-│   └── main.jsx
-├── styles/
-│   ├── blocks/
-│   │   ├── page.css
-│   │   └── index.css
-│   └── vendor/
-├── fonts/
-│   ├── Outfit-VariableFont...
-│   └── fonts.css
 ├── .editorconfig
-├── .env
 ├── .gitignore
 ├── .prettierrc
-├── index.html
-├── package-lock.json
-├── package.json
 ├── README.md
+├── index.html
+├── package.json
+├── src
+    ├── components
+    │   ├── Api
+    │   │   ├── auth.js
+    │   │   └── cards.js
+    │   ├── App.jsx
+    │   ├── Articles
+    │   │   ├── Articles.css
+    │   │   └── Articles.jsx
+    │   ├── Card
+    │   │   ├── Card.css
+    │   │   └── Card.jsx
+    │   ├── Contacts
+    │   │   ├── Contacts.css
+    │   │   └── Contacts.jsx
+    │   ├── Footer
+    │   │   ├── Footer.css
+    │   │   └── Footer.jsx
+    │   ├── Header
+    │   │   ├── Header.css
+    │   │   └── Header.jsx
+    │   ├── InfoSection
+    │   │   ├── InfoSection.css
+    │   │   └── InfoSection.jsx
+    │   ├── Loading
+    │   │   ├── Loading.css
+    │   │   └── Loading.jsx
+    │   ├── Main
+    │   │   ├── Main.css
+    │   │   └── Main.jsx
+    │   ├── Map
+    │   │   ├── ChargerMarker
+    │   │   │   ├── ChargerMarker.css
+    │   │   │   └── ChargerMarker.jsx
+    │   │   ├── Map.css
+    │   │   └── Map.jsx
+    │   ├── Popup
+    │   │   ├── Popup.css
+    │   │   ├── Popup.jsx
+    │   │   ├── PopupLogin
+    │   │   │   ├── PopupLogin.css
+    │   │   │   └── PopupLogin.jsx
+    │   │   └── PopupName
+    │   │   │   ├── PopupName.css
+    │   │   │   └── PopupName.jsx
+    │   └── Register
+    │   │   ├── Register.css
+    │   │   └── Register.jsx
+    ├── env
+    │   └── index.js
+    ├── images
+    │   ├── Charge.png
+    │   ├── charging-station-1.svg
+    │   ├── github.svg
+    │   ├── linkedin.svg
+    │   ├── list.svg
+    │   ├── list_up.svg
+    │   ├── powerspot__logo.svg
+    │   ├── saved.svg
+    │   └── unsaved.svg
+    └── main.jsx
+├── styles
+    ├── blocks
+    │   └── page.css
+    └── index.css
+├── vendor
+    ├── fonts.css
+    ├── fonts
+    │   └── Outfit-VariableFont_wght.ttf
+    └── normalize.css
 └── vite.config.js
 
 ```
